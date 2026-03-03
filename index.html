@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page - Mockup Dasbor Desa</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            color: white;
+            padding: 100px 0;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+        .card-mockup {
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .card-mockup:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+        .icon-badge {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Dasbor Desa</h1>
+            <p class="lead">Sistem Monitoring & Transparansi Tata Kelola Desa yang Bersih dan Modular.</p>
+            <div class="mt-4">
+                <a href="#mockups" class="btn btn-light btn-lg px-4 me-2">Lihat Mockup</a>
+                <a href="https://github.com/dasbordesa/dasbordesa" class="btn btn-outline-light btn-lg px-4">Repository</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Description -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h3 class="h5 fw-bold"><i class="bi bi-eye text-primary me-2"></i> Transparansi</h3>
+                        <p class="text-muted small">Memudahkan warga memantau realisasi anggaran dan capaian kinerja desa secara real-time.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h3 class="h5 fw-bold"><i class="bi bi-shield-check text-primary me-2"></i> Akuntabilitas</h3>
+                        <p class="text-muted small">Setiap input data tercatat dalam audit log untuk memastikan keabsahan informasi operasional.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h3 class="h5 fw-bold"><i class="bi bi-graph-up text-primary me-2"></i> Visioner</h3>
+                        <p class="text-muted small">Menyediakan indeks kualitas tata kelola (pelayanan, partisipasi, ketahanan) untuk arah kebijakan yang tepat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mockup Navigation -->
+    <section id="mockups" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">Katalog Mockup</h2>
+            <div class="row g-4">
+                <!-- Dashboard Publik -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/dashboard_publik.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-primary bg-opacity-10 mx-auto text-primary">
+                                    <i class="bi bi-layout-text-window-reverse fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Dasbor Publik</h5>
+                                <p class="card-text text-muted small">Tampilan umum indikator desa bagi warga luas.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Dashboard Privat -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/dashboard_privat.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-success bg-opacity-10 mx-auto text-success">
+                                    <i class="bi bi-speedometer2 fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Dasbor Privat</h5>
+                                <p class="card-text text-muted small">Panel kontrol internal untuk operator & admin desa.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Login Page -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/login.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-warning bg-opacity-10 mx-auto text-warning">
+                                    <i class="bi bi-person-lock fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Halaman Login</h5>
+                                <p class="card-text text-muted small">Antarmuka akses sistem bagi pengguna terdaftar.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Tabel Data (Tabs) -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/tabel_data.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-info bg-opacity-10 mx-auto text-info">
+                                    <i class="bi bi-table fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Tabel & Tabs</h5>
+                                <p class="card-text text-muted small">Pengelolaan data yang rapi menggunakan sistem tabulasi.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Form Input (Tabs) -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/form_input.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-danger bg-opacity-10 mx-auto text-danger">
+                                    <i class="bi bi-pencil-square fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Form & Tabs</h5>
+                                <p class="card-text text-muted small">Entri data bertahap untuk formulir yang kompleks.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Admin User -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/admin_user.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-secondary bg-opacity-10 mx-auto text-secondary">
+                                    <i class="bi bi-people fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Manajemen User</h5>
+                                <p class="card-text text-muted small">Pengaturan hak akses dan audit log operator.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Detail Data -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/detail_data.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-primary bg-opacity-10 mx-auto text-primary">
+                                    <i class="bi bi-file-earmark-text fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Detail Data</h5>
+                                <p class="card-text text-muted small">Tampilan lengkap untuk rincian satu entri data.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Error Page -->
+                <div class="col-md-4 col-lg-3">
+                    <a href="mockups/404.html" class="text-decoration-none text-dark">
+                        <div class="card card-mockup border-0 shadow-sm">
+                            <div class="card-body p-4 text-center">
+                                <div class="icon-badge bg-dark bg-opacity-10 mx-auto text-dark">
+                                    <i class="bi bi-exclamation-triangle fs-3"></i>
+                                </div>
+                                <h5 class="card-title fw-bold">Halaman Error</h5>
+                                <p class="card-text text-muted small">Template standar untuk kesalahan sistem (404/500).</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-white border-top mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0 small">&copy; 2024 Dasbor Desa - Open Source Project</p>
+            <p class="text-muted small">Dibangun untuk kemajuan tata kelola desa di Indonesia.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,154 +1,149 @@
-# DASBOR DESA
-## 1. Latar Belakang
+# Dasbor Desa
 
-Desa membutuhkan sistem yang tidak hanya membantu administrasi, tetapi juga memungkinkan monitoring kondisi desa secara cepat, akurat, dan transparan. Selama ini, pelaporan sering bersifat manual, berbasis dokumen terpisah, dan membutuhkan rekapitulasi berkala sebelum bisa dilihat oleh pihak kecamatan, kabupaten, maupun warga.
+Dasbor Desa adalah proyek open source untuk membangun sistem monitoring dan transparansi desa berbasis indikator, dengan pendekatan semi-publik dan arsitektur yang sederhana, terpisah per desa (single instance).
 
-Dasbor Desa dirancang sebagai instrumen monitoring dan transparansi yang dapat diakses sesuai tingkat kewenangan, tanpa menunggu rekap manual tahunan atau semesteran.
-
----
-
-## 2. Tujuan
-
-1. Menyediakan sistem monitoring desa berbasis data aktual.
-2. Mendukung keterbukaan informasi publik secara terukur dan aman.
-3. Mempermudah perangkat desa dalam melihat progres kinerja.
-4. Memungkinkan kecamatan/kabupaten memantau indikator strategis secara ringkas.
-5. Meningkatkan akuntabilitas dan kepercayaan warga.
+Proyek ini berfokus pada layer monitoring dan visualisasi strategis, bukan sistem administrasi kependudukan penuh. Sistem dirancang agar dapat berdiri sendiri maupun berjalan berdampingan dengan sistem informasi desa lain.
 
 ---
 
-## 3. Prinsip Dasar Sistem
+## Visi
 
-### a. Semi-Publik
+Menyediakan fondasi teknis yang bersih, modular, dan mudah direplikasi untuk membangun dashboard desa yang:
 
-Sistem dibagi dalam dua lapisan akses:
-
-* **Publik**: Informasi agregat dan ringkasan yang boleh diketahui masyarakat.
-* **Terbatas (Login)**: Informasi detail yang hanya dapat diakses perangkat desa atau pihak berwenang.
-
-### b. Berbasis Indikator
-
-Fokus pada indikator kinerja dan monitoring, bukan sekadar penyimpanan data.
-
-### c. Satu Desa, Satu Instance
-
-Setiap desa memiliki sistem terpisah untuk menjaga keamanan, kemandirian, dan isolasi data.
-
-### d. Kompatibel dengan Microsoft Office
-
-Data dapat diimpor dan diekspor ke format Word dan Excel untuk menjaga kenyamanan kerja perangkat desa.
+* Real-time (berbasis input langsung ke sistem)
+* Terstruktur (menggunakan database relasional)
+* Semi-publik (sesuai klasifikasi informasi)
+* Siap dikembangkan lintas desa tanpa arsitektur multi-tenant yang kompleks
 
 ---
 
-## 4. Struktur Indikator: Dua Halaman Utama
+## Prinsip Arsitektur
 
-### HALAMAN 1 — INDIKATOR STANDAR NASIONAL
+* Satu desa, satu instance (isolasi penuh per deployment)
+* Satu codebase utama
+* Konfigurasi berbasis environment variable
+* Customisasi melalui konfigurasi atau feature flag, bukan fork permanen
+* Database relasional (PostgreSQL)
+* Backend-first (Django)
 
-Halaman ini mengikuti format pelaporan dan tata kelola yang lazim digunakan secara nasional.
+Tidak ada dependensi pada SaaS tertentu. Integrasi eksternal bersifat opsional.
 
-**A. Keuangan Desa**
+---
+
+## Ruang Lingkup Sistem
+
+### 1. Dashboard Indikator Standar
+
+Mengakomodasi kebutuhan pelaporan formal dan monitoring dasar:
 
 * Ringkasan APBDes
-* Serapan anggaran (%)
-* Realisasi per bidang
+* Serapan anggaran
+* Progres kegiatan
+* Statistik layanan
+* Ringkasan aset
 
-**B. Kegiatan Pembangunan**
-
-* Jumlah kegiatan
-* Progres fisik (%)
-* Status pelaporan
-
-**C. Layanan Administratif**
-
-* Jumlah layanan diterbitkan
-* Rata-rata waktu pelayanan
-
-**D. Ringkasan Aset Desa**
-
-* Jumlah aset per kategori
-
-Karakter halaman ini:
-
-* Formal
-* Mudah dipahami auditor
-* Sesuai kebutuhan pelaporan
+Fokus: konsistensi data dan keterbacaan lintas level pemerintahan.
 
 ---
 
-### HALAMAN 2 — INDIKATOR VISIONER
+### 2. Dashboard Indikator Visioner
 
-Halaman ini menampilkan arah dan kualitas tata kelola desa.
+Layer strategis untuk mengukur kualitas tata kelola:
 
-**A. Indeks Pelayanan Desa**
-Gabungan indikator kecepatan, penyelesaian, dan respons.
+* Indeks Pelayanan Desa
+* Indeks Transparansi
+* Indeks Partisipasi
+* Indeks Ketahanan
 
-**B. Indeks Transparansi**
-Mengukur konsistensi pembaruan data dan kelengkapan informasi publik.
-
-**C. Indeks Partisipasi Warga**
-Jumlah kegiatan partisipatif dan keterlibatan masyarakat.
-
-**D. Indeks Ketahanan Desa**
-Rasio belanja produktif, cadangan darurat, dan indikator keberlanjutan.
-
-Karakter halaman ini:
-
-* Strategis
-* Visual
-* Membantu pengambilan keputusan
+Indikator dihitung dari data operasional yang sama, tanpa duplikasi sumber.
 
 ---
 
-## 5. Arsitektur Sistem
+## Model Akses
 
-* Backend: Django
-* Database: PostgreSQL
-* Hosting: Render atau DigitalOcean (terpisah per desa)
-* Fitur utama: Form input, tabel data, dashboard visual
-* Utilitas: Impor dan ekspor data ke Excel dan Word
+### Publik
 
-Semua input dilakukan melalui sistem untuk menjaga validasi dan audit log.
+* Ringkasan indikator agregat
+* Visualisasi non-sensitif
 
----
+### Terbatas (Login)
 
-## 6. Manfaat Bagi Stakeholder
+* Detail data
+* Manajemen input
+* Dokumen pendukung
+* Audit log
 
-### Bagi Kepala Desa
-
-* Melihat kondisi desa secara cepat
-* Monitoring progres tanpa menunggu laporan manual
-
-### Bagi Perangkat Desa
-
-* Pencatatan lebih tertib
-* Laporan otomatis tersedia
-
-### Bagi Kecamatan/Kabupaten
-
-* Ringkasan indikator desa dalam satu tampilan
-* Monitoring lintas waktu lebih mudah
-
-### Bagi Warga
-
-* Akses informasi transparan
-* Meningkatkan kepercayaan terhadap tata kelola desa
+Kontrol akses berbasis role dan group.
 
 ---
 
-## 7. Model Penganggaran
+## Fitur Inti
 
-Sistem dikembangkan berbasis proyek tahunan dengan cakupan:
-
-* Pengembangan dan implementasi
-* Hosting dan infrastruktur
-* Pemeliharaan dan pembaruan
-
-Plafon yang disarankan: maksimal 36 juta rupiah per tahun per desa.
+* Form input terstruktur dengan validasi
+* Table view dengan filter, sorting, pagination
+* Dashboard berbasis grafik
+* Audit trail perubahan data
+* Impor dari Excel (template terstandar)
+* Ekspor ke Excel dan Word
 
 ---
 
-## 8. Penutup
+## Struktur Repository (Usulan)
 
-Dasbor Desa bukan sekadar aplikasi administrasi, melainkan instrumen monitoring dan transparansi yang mendukung tata kelola desa yang lebih akuntabel, efisien, dan visioner.
+```
+root/
+ ├── backend/
+ │    ├── config/
+ │    ├── apps/
+ │    ├── templates/
+ │    ├── static/
+ │    └── manage.py
+ │
+ ├── docs/
+ ├── mockups/
+ └── README.md
+```
 
-Dengan desain semi-publik, dua halaman indikator, dan arsitektur yang ringan namun kuat, sistem ini dapat diadopsi secara luas tanpa membebani anggaran desa.
+`mockups/` hanya berisi referensi desain statis untuk eksplorasi UI, tidak menjadi bagian dari runtime sistem.
+
+---
+
+## Roadmap Teknis
+
+### Phase 1
+
+* Finalisasi model data inti
+* Implementasi modul indikator standar
+* Sistem autentikasi dan role
+
+### Phase 2
+
+* Implementasi indikator visioner
+* Impor/ekspor data
+* Hardening keamanan dan audit log
+
+### Phase 3
+
+* Optimasi performa
+* Dokumentasi deployment per desa
+* Standarisasi konfigurasi
+
+---
+
+## Kontribusi
+
+Kontribusi diharapkan dalam bentuk:
+
+* Perbaikan arsitektur
+* Penyempurnaan model data
+* Refactor kode
+* Pengujian keamanan
+* Penyusunan indikator berbasis data nyata
+
+Gunakan issue dan pull request untuk diskusi teknis.
+
+---
+
+## Catatan
+
+Proyek ini tidak berpretensi menjadi sistem nasional atau menggantikan sistem administrasi yang telah ada. Fokusnya adalah menyediakan fondasi dashboard monitoring desa yang bersih, modular, dan dapat dikembangkan lebih lanjut oleh komunitas.

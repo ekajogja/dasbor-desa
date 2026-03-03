@@ -206,10 +206,13 @@
                 <div class="col-lg-3">
                     <div class="nav flex-column nav-pills nav-pills-custom" id="form-steps" role="tablist">
                         <button class="nav-link active mb-2" id="step-1-tab" data-bs-toggle="pill" data-bs-target="#step-1" type="button" role="tab">
-                            <i class="bi bi-info-circle"></i> Informasi Dasar
+                            <i class="bi bi-info-circle"></i> Kegiatan & Lokasi
                         </button>
                         <button class="nav-link mb-2" id="step-2-tab" data-bs-toggle="pill" data-bs-target="#step-2" type="button" role="tab">
-                            <i class="bi bi-cash-stack"></i> Detail Anggaran
+                            <i class="bi bi-cash-stack"></i> Anggaran & Realisasi
+                        </button>
+                        <button class="nav-link mb-2" id="step-4-tab" data-bs-toggle="pill" data-bs-target="#step-4" type="button" role="tab">
+                            <i class="bi bi-file-earmark-medical"></i> Layanan & Aset
                         </button>
                         <button class="nav-link mb-2" id="step-3-tab" data-bs-toggle="pill" data-bs-target="#step-3" type="button" role="tab">
                             <i class="bi bi-paperclip"></i> Lampiran & Bukti
@@ -226,65 +229,126 @@
                     <div class="card p-4">
                         <form action="tabel_data.html">
                             <div class="tab-content" id="form-steps-content">
-                                <!-- Langkah 1: Informasi Dasar -->
+                                <!-- Langkah 1: Kegiatan & Lokasi -->
                                 <div class="tab-pane fade show active" id="step-1" role="tabpanel">
-                                    <h5 class="fw-bold mb-4">Langkah 1: Informasi Dasar Kegiatan</h5>
+                                    <h5 class="fw-bold mb-4">Langkah 1: Informasi Kegiatan & Lokasi</h5>
                                     <div class="mb-3">
                                         <label class="form-label small fw-bold">Nama Kegiatan</label>
-                                        <input type="text" class="form-control" placeholder="Contoh: Pembangunan Jembatan Dusun Krajan" required>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Contoh: Pembangunan Jembatan Dusun Krajan" required>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label small fw-bold">Kategori</label>
-                                            <select class="form-select">
-                                                <option selected disabled>Pilih Kategori</option>
-                                                <option>Infrastruktur</option>
-                                                <option>Pendidikan</option>
-                                                <option>Kesehatan</option>
-                                                <option>Pemberdayaan</option>
+                                            <label class="form-label small fw-bold">Bidang</label>
+                                            <select class="form-select form-select-sm">
+                                                <option selected disabled>Pilih Bidang</option>
+                                                <option>Penyelenggaraan Pemerintahan</option>
+                                                <option>Pembangunan Desa</option>
+                                                <option>Pembinaan Kemasyarakatan</option>
+                                                <option>Pemberdayaan Masyarakat</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label small fw-bold">Tahun Anggaran</label>
-                                            <input type="number" class="form-control" value="2024">
+                                            <input type="number" class="form-control form-control-sm" value="2024">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-bold">Tanggal Mulai</label>
+                                            <input type="date" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-bold">Target Selesai</label>
+                                            <input type="date" class="form-control form-control-sm">
                                         </div>
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label small fw-bold">Lokasi (Alamat Lengkap)</label>
-                                        <textarea class="form-control" rows="3" placeholder="Sebutkan Dusun, RT, RW..."></textarea>
+                                        <label class="form-label small fw-bold">Lokasi (Koordinat Peta)</label>
+                                        <div class="input-group input-group-sm mb-2">
+                                            <span class="input-group-text">Lat, Long</span>
+                                            <input type="text" class="form-control" placeholder="-8.05177, 111.84063">
+                                            <button class="btn btn-outline-secondary" type="button">Pilih di Peta</button>
+                                        </div>
+                                        <textarea class="form-control form-control-sm" rows="2" placeholder="Detail alamat (Dusun, RT/RW)..."></textarea>
                                     </div>
                                     <div class="text-end mt-4">
                                         <button type="button" class="btn btn-primary px-4" onclick="document.getElementById('step-2-tab').click()">Lanjut ke Anggaran <i class="bi bi-arrow-right"></i></button>
                                     </div>
                                 </div>
 
-                                <!-- Langkah 2: Detail Anggaran -->
+                                <!-- Langkah 2: Anggaran & Realisasi -->
                                 <div class="tab-pane fade" id="step-2" role="tabpanel">
-                                    <h5 class="fw-bold mb-4">Langkah 2: Detail Anggaran</h5>
-                                    <div class="mb-3">
-                                        <label class="form-label small fw-bold">Pagu Anggaran (Rp)</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">Rp</span>
-                                            <input type="number" class="form-control" placeholder="Contoh: 100000000">
+                                    <h5 class="fw-bold mb-4">Langkah 2: Detail Anggaran & Realisasi</h5>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-bold">Pagu Anggaran (Rp)</label>
+                                            <input type="number" class="form-control form-control-sm" placeholder="Pagu Dana">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-bold">Realisasi Saat Ini (Rp)</label>
+                                            <input type="number" class="form-control form-control-sm" placeholder="Total Serapan">
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label small fw-bold">Sumber Dana</label>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="dd">
-                                            <label class="form-check-label small" for="dd">Dana Desa (DD)</label>
+                                        <div class="d-flex gap-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="dd">
+                                                <label class="form-check-label small" for="dd">DD</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="add">
+                                                <label class="form-check-label small" for="add">ADD</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="pad">
+                                                <label class="form-check-label small" for="pad">PAD</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="bankeu">
+                                                <label class="form-check-label small" for="bankeu">Bankeu</label>
+                                            </div>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="add">
-                                            <label class="form-check-label small" for="add">Alokasi Dana Desa (ADD)</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="pad">
-                                            <label class="form-check-label small" for="pad">Pendapatan Asli Desa (PAD)</label>
-                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-bold">Progres Fisik (%)</label>
+                                        <input type="range" class="form-range" min="0" max="100" step="5" id="progresRange" oninput="this.nextElementSibling.value = this.value + '%'">
+                                        <output class="small fw-bold">50%</output>
                                     </div>
                                     <div class="text-end mt-4">
                                         <button type="button" class="btn btn-outline-secondary px-4 me-2" onclick="document.getElementById('step-1-tab').click()">Kembali</button>
+                                        <button type="button" class="btn btn-primary px-4" onclick="document.getElementById('step-4-tab').click()">Lanjut ke Layanan <i class="bi bi-arrow-right"></i></button>
+                                    </div>
+                                </div>
+
+                                <!-- Langkah 4: Layanan & Aset (Baru) -->
+                                <div class="tab-pane fade" id="step-4" role="tabpanel">
+                                    <h5 class="fw-bold mb-4">Langkah 3: Pencatatan Layanan & Aset</h5>
+                                    <div class="card bg-light border-0 p-3 mb-3">
+                                        <h6 class="fw-bold small mb-2"><i class="bi bi-info-circle me-1"></i> Opsional: Gunakan jika input ini terkait Layanan atau Aset</h6>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <label class="form-label small">Jenis Layanan</label>
+                                                <select class="form-select form-select-sm">
+                                                    <option selected>Bukan Layanan</option>
+                                                    <option>Surat Keterangan</option>
+                                                    <option>Administrasi Kependudukan</option>
+                                                    <option>Izin Usaha Desa</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <label class="form-label small">Kategori Aset</label>
+                                                <select class="form-select form-select-sm">
+                                                    <option selected>Bukan Aset</option>
+                                                    <option>Tanah/Lahan</option>
+                                                    <option>Peralatan</option>
+                                                    <option>Kendaraan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-end mt-4">
+                                        <button type="button" class="btn btn-outline-secondary px-4 me-2" onclick="document.getElementById('step-2-tab').click()">Kembali</button>
                                         <button type="button" class="btn btn-primary px-4" onclick="document.getElementById('step-3-tab').click()">Lanjut ke Lampiran <i class="bi bi-arrow-right"></i></button>
                                     </div>
                                 </div>

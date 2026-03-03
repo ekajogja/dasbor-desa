@@ -108,6 +108,162 @@ root/
 
 ---
 
+## Spesifikasi Awal: Tabel, Form Input, dan Charts
+
+### A. Layer Publik
+
+#### 1. Tabel (Read-Only)
+
+* `indikator_ringkasan_tahunan`
+
+  * tahun
+  * total_anggaran
+  * total_realisasi
+  * persentase_serapan
+  * indeks_pelayanan
+  * indeks_transparansi
+
+* `kegiatan_berjalan`
+
+  * nama_kegiatan
+  * bidang
+  * nilai_anggaran
+  * progres_persen
+  * status
+
+* `statistik_layanan_bulanan`
+
+  * bulan
+  * jumlah_surat_diterbitkan
+  * jumlah_permohonan_masuk
+  * rata_rata_waktu_layanan
+
+* `ringkasan_aset`
+
+  * kategori
+  * jumlah_unit
+  * estimasi_nilai
+
+#### 2. Charts (Agregat, Non-Sensitif)
+
+* Line chart: Serapan anggaran per bulan
+* Bar chart: Progres kegiatan per bidang
+* Pie chart: Komposisi belanja (operasional vs pembangunan)
+* Line chart: Tren jumlah layanan publik
+* Radar chart: Indeks visioner (pelayanan, transparansi, partisipasi, ketahanan)
+
+Semua grafik berbasis agregasi, tanpa menampilkan data individu.
+
+---
+
+### B. Layer Privat (Login Required)
+
+#### 1. Tabel Operasional
+
+* `apbdes`
+
+  * id
+  * tahun
+  * bidang
+  * sub_bidang
+  * jenis_belanja
+  * pagu
+  * realisasi
+  * updated_at
+
+* `kegiatan`
+
+  * id
+  * nama
+  * bidang
+  * lokasi
+  * nilai_anggaran
+  * tanggal_mulai
+  * tanggal_selesai
+  * progres_persen
+  * penanggung_jawab
+
+* `transaksi_realisasi`
+
+  * id
+  * kegiatan_id
+  * tanggal
+  * uraian
+  * jumlah
+  * bukti_dokumen
+
+* `layanan`
+
+  * id
+  * jenis_layanan
+  * tanggal_permohonan
+  * tanggal_selesai
+  * status
+  * petugas
+
+* `aset`
+
+  * id
+  * nama_aset
+  * kategori
+  * tahun_perolehan
+  * nilai_perolehan
+  * kondisi
+
+* `users`
+
+  * id
+  * nama
+  * role
+  * aktif
+
+* `audit_log`
+
+  * id
+  * user_id
+  * aksi
+  * tabel
+  * record_id
+  * timestamp
+
+#### 2. Form Input
+
+* Form input APBDes (tahunan dan perubahan)
+* Form input kegiatan baru
+* Form update progres kegiatan
+* Form input realisasi transaksi
+* Form pencatatan layanan masuk
+* Form penyelesaian layanan
+* Form pencatatan aset
+* Form manajemen user & role
+
+Semua form memiliki:
+
+* Validasi server-side
+* Field wajib terstandar
+* Timestamp otomatis
+* Pencatatan audit log
+
+#### 3. Charts Internal (Detail & Analitik)
+
+* Cashflow bulanan (anggaran vs realisasi)
+* Deviasi anggaran per kegiatan
+* Distribusi waktu penyelesaian layanan
+* Heatmap beban layanan per bulan
+* Ranking kegiatan berdasarkan progres
+* Deteksi anomali sederhana (lonjakan realisasi tidak wajar)
+
+---
+
+### C. Relasi Layer Publik dan Privat
+
+* Layer publik hanya membaca hasil agregasi dari tabel operasional.
+* Tidak ada duplikasi tabel khusus untuk publik.
+* Perubahan data di layer privat langsung mempengaruhi agregasi publik.
+* Indikator visioner dihitung melalui fungsi/management command terjadwal.
+
+---
+
 ## Roadmap Teknis
 
 ### Phase 1

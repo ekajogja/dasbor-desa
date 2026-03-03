@@ -109,6 +109,18 @@
             border-radius: 0.75rem;
             margin-bottom: 1rem;
         }
+        .nav-tabs-custom .nav-link {
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 1rem 1.5rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+        .nav-tabs-custom .nav-link.active {
+            background: none;
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -194,9 +206,17 @@
                 </button>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card p-4">
+            <div class="card p-0">
+                <ul class="nav nav-tabs nav-tabs-custom px-3 pt-2" id="adminTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">Daftar Petugas</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="audit-tab" data-bs-toggle="tab" data-bs-target="#audit" type="button" role="tab">Audit Log</button>
+                    </li>
+                </ul>
+                <div class="tab-content p-4" id="adminTabsContent">
+                    <div class="tab-pane fade show active" id="users" role="tabpanel">
                         <div class="table-responsive">
                             <table class="table table-hover align-middle small">
                                 <thead class="table-light">
@@ -252,26 +272,36 @@
                                             <button class="btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
                                         </td>
                                     </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="audit" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle small">
+                                <thead class="table-light">
                                     <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="bg-warning bg-opacity-10 text-warning rounded-circle p-2 me-2">
-                                                    <i class="bi bi-person-fill"></i>
-                                                </div>
-                                                <div>
-                                                    <div class="fw-bold">Agus Salim</div>
-                                                    <div class="text-muted small">agus@desa.id</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td><code>agus_viewer</code></td>
-                                        <td><span class="badge bg-secondary">Viewer (Hanya Baca)</span></td>
-                                        <td><span class="badge bg-warning">Tertunda</span></td>
-                                        <td class="text-muted">-</td>
-                                        <td class="text-center">
-                                            <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
-                                            <button class="btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
-                                        </td>
+                                        <th>Waktu</th>
+                                        <th>User</th>
+                                        <th>Aksi</th>
+                                        <th>Tabel</th>
+                                        <th>ID Record</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>24/05/2024 14:20</td>
+                                        <td>siti_operator</td>
+                                        <td><span class="badge bg-info">Update</span></td>
+                                        <td><code>kegiatan</code></td>
+                                        <td>#KG-2024-001</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24/05/2024 10:45</td>
+                                        <td>budisantoso</td>
+                                        <td><span class="badge bg-success">Create</span></td>
+                                        <td><code>users</code></td>
+                                        <td>#USR-003</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -239,7 +239,9 @@
                 <div class="col-lg-8">
                     <div class="card p-4">
                         <h5 class="fw-bold mb-4">Tren Serapan Anggaran 2024</h5>
-                        <canvas id="budgetChart" height="250"></canvas>
+                        <div style="height: 300px; position: relative;">
+                            <canvas id="budgetChart"></canvas>
+                        </div>
                     </div>
                 </div>
                 <!-- Mini Info -->
@@ -276,6 +278,124 @@
                         <hr>
                         <div class="text-center">
                             <a href="tabel_data.html" class="btn btn-sm btn-outline-primary">Lihat Semua Kegiatan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row: Tables and More Charts -->
+            <div class="row mt-2">
+                <!-- Kegiatan Berjalan Table -->
+                <div class="col-lg-7">
+                    <div class="card p-4 h-100">
+                        <h5 class="fw-bold mb-4">Kegiatan Berjalan</h5>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nama Kegiatan</th>
+                                        <th>Bidang</th>
+                                        <th>Anggaran</th>
+                                        <th>Progres</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold">Pembangunan Rabat Beton RW 04</td>
+                                        <td>Infrastruktur</td>
+                                        <td>150jt</td>
+                                        <td>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-success" style="width: 100%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-success-subtle text-success">Selesai</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Rehabilitasi Posyandu Melati</td>
+                                        <td>Kesehatan</td>
+                                        <td>75jt</td>
+                                        <td>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-primary" style="width: 65%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-primary-subtle text-primary">Berjalan</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Pengadaan Bibit Pertanian</td>
+                                        <td>Ekonomi</td>
+                                        <td>45jt</td>
+                                        <td>
+                                            <div class="progress" style="height: 6px;">
+                                                <div class="progress-bar bg-warning" style="width: 30%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-warning-subtle text-warning">Awal</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Radar Chart: Indeks Visioner -->
+                <div class="col-lg-5">
+                    <div class="card p-4 h-100">
+                        <h5 class="fw-bold mb-4">Indeks Visioner Desa</h5>
+                        <div style="height: 300px; position: relative;">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row: Service Stats and Asset Summary -->
+            <div class="row mt-2">
+                <div class="col-lg-6">
+                    <div class="card p-4 h-100">
+                        <h5 class="fw-bold mb-4">Statistik Layanan Bulanan</h5>
+                        <div style="height: 250px; position: relative;">
+                            <canvas id="serviceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card p-4 h-100">
+                        <h5 class="fw-bold mb-4">Ringkasan Aset Desa</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Kategori</th>
+                                        <th class="text-center">Jumlah</th>
+                                        <th class="text-end">Estimasi Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Tanah Kas Desa</td>
+                                        <td class="text-center">5 Lokasi</td>
+                                        <td class="text-end">Rp 2,5 M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bangunan & Gedung</td>
+                                        <td class="text-center">3 Unit</td>
+                                        <td class="text-end">Rp 1,2 M</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kendaraan Dinas</td>
+                                        <td class="text-center">4 Unit</td>
+                                        <td class="text-end">Rp 180 Juta</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Peralatan Kantor</td>
+                                        <td class="text-center">25 Unit</td>
+                                        <td class="text-end">Rp 75 Juta</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -321,9 +441,9 @@
             .bindPopup('<b>Kantor Desa Tiudan</b><br>Kec. Gondang, Tulungagung.')
             .openPopup();
 
-        // Chart Initialization
-        const ctx = document.getElementById('budgetChart').getContext('2d');
-        new Chart(ctx, {
+        // Chart Initialization: Line Chart (Budget)
+        const ctxBudget = document.getElementById('budgetChart').getContext('2d');
+        new Chart(ctxBudget, {
             type: 'line',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
@@ -334,6 +454,68 @@
                     backgroundColor: 'rgba(13, 110, 253, 0.1)',
                     fill: true,
                     tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Radar Chart: Indeks Visioner
+        const ctxRadar = document.getElementById('radarChart').getContext('2d');
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Pelayanan', 'Transparansi', 'Partisipasi', 'Ketahanan'],
+                datasets: [{
+                    label: 'Indeks Desa',
+                    data: [85, 90, 75, 80],
+                    fill: true,
+                    backgroundColor: 'rgba(25, 135, 84, 0.2)',
+                    borderColor: 'rgb(25, 135, 84)',
+                    pointBackgroundColor: 'rgb(25, 135, 84)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(25, 135, 84)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                elements: {
+                    line: { borderWidth: 3 }
+                },
+                scales: {
+                    r: {
+                        angleLines: { display: false },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+        // Bar Chart: Layanan Bulanan
+        const ctxService = document.getElementById('serviceChart').getContext('2d');
+        new Chart(ctxService, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{
+                    label: 'Permohonan Masuk',
+                    data: [45, 52, 48, 60, 55, 65],
+                    backgroundColor: 'rgba(13, 110, 253, 0.7)'
+                }, {
+                    label: 'Surat Terbit',
+                    data: [40, 50, 45, 58, 52, 60],
+                    backgroundColor: 'rgba(25, 135, 84, 0.7)'
                 }]
             },
             options: {

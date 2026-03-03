@@ -206,13 +206,13 @@
                 <div class="col-lg-3">
                     <div class="nav flex-column nav-pills nav-pills-custom" id="form-steps" role="tablist">
                         <button class="nav-link active mb-2" id="step-1-tab" data-bs-toggle="pill" data-bs-target="#step-1" type="button" role="tab">
-                            <i class="bi bi-info-circle"></i> Kegiatan & Lokasi
+                            <i class="bi bi-info-circle"></i> APBDes & Kegiatan
                         </button>
                         <button class="nav-link mb-2" id="step-2-tab" data-bs-toggle="pill" data-bs-target="#step-2" type="button" role="tab">
-                            <i class="bi bi-cash-stack"></i> Anggaran & Realisasi
+                            <i class="bi bi-cash-stack"></i> Realisasi & Layanan
                         </button>
                         <button class="nav-link mb-2" id="step-4-tab" data-bs-toggle="pill" data-bs-target="#step-4" type="button" role="tab">
-                            <i class="bi bi-file-earmark-medical"></i> Layanan & Aset
+                            <i class="bi bi-box-seam"></i> Aset & Penduduk
                         </button>
                         <button class="nav-link mb-2" id="step-3-tab" data-bs-toggle="pill" data-bs-target="#step-3" type="button" role="tab">
                             <i class="bi bi-paperclip"></i> Lampiran & Bukti
@@ -229,12 +229,18 @@
                     <div class="card p-4">
                         <form action="tabel_data.html">
                             <div class="tab-content" id="form-steps-content">
-                                <!-- Langkah 1: Kegiatan & Lokasi -->
+                                <!-- Langkah 1: APBDes & Kegiatan -->
                                 <div class="tab-pane fade show active" id="step-1" role="tabpanel">
-                                    <h5 class="fw-bold mb-4">Langkah 1: Informasi Kegiatan & Lokasi</h5>
-                                    <div class="mb-3">
-                                        <label class="form-label small fw-bold">Nama Kegiatan</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Contoh: Pembangunan Jembatan Dusun Krajan" required>
+                                    <h5 class="fw-bold mb-4">Langkah 1: Informasi APBDes & Kegiatan</h5>
+                                    <div class="row mb-3">
+                                        <div class="col-md-8">
+                                            <label class="form-label small fw-bold">Nama Item/Kegiatan</label>
+                                            <input type="text" class="form-control form-control-sm" placeholder="Contoh: Pembangunan Jembatan Dusun Krajan" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label small fw-bold">Tahun Anggaran</label>
+                                            <input type="number" class="form-control form-control-sm" value="2024">
+                                        </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-md-6">
@@ -248,8 +254,11 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label small fw-bold">Tahun Anggaran</label>
-                                            <input type="number" class="form-control form-control-sm" value="2024">
+                                            <label class="form-label small fw-bold">Jenis Belanja</label>
+                                            <select class="form-select form-select-sm">
+                                                <option>Operasional</option>
+                                                <option>Pembangunan</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -276,17 +285,37 @@
                                     </div>
                                 </div>
 
-                                <!-- Langkah 2: Anggaran & Realisasi -->
+                                <!-- Langkah 2: Realisasi & Layanan -->
                                 <div class="tab-pane fade" id="step-2" role="tabpanel">
-                                    <h5 class="fw-bold mb-4">Langkah 2: Detail Anggaran & Realisasi</h5>
+                                    <h5 class="fw-bold mb-4">Langkah 2: Input Transaksi & Layanan</h5>
+                                    <div class="card bg-light border-0 p-3 mb-4">
+                                        <h6 class="fw-bold small mb-3">Entri Transaksi Baru</h6>
+                                        <div class="row g-2">
+                                            <div class="col-md-4">
+                                                <input type="date" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input type="text" class="form-control form-control-sm" placeholder="Uraian Pembayaran">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <input type="number" class="form-control form-control-sm" placeholder="Jumlah (Rp)">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="row mb-3">
                                         <div class="col-md-6">
-                                            <label class="form-label small fw-bold">Pagu Anggaran (Rp)</label>
+                                            <label class="form-label small fw-bold">Total Pagu (Rp)</label>
                                             <input type="number" class="form-control form-control-sm" placeholder="Pagu Dana">
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label small fw-bold">Realisasi Saat Ini (Rp)</label>
-                                            <input type="number" class="form-control form-control-sm" placeholder="Total Serapan">
+                                            <label class="form-label small fw-bold">Status Layanan</label>
+                                            <select class="form-select form-select-sm">
+                                                <option>Bukan Layanan</option>
+                                                <option>Permohonan Masuk</option>
+                                                <option>Diproses</option>
+                                                <option>Selesai</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -321,31 +350,32 @@
                                     </div>
                                 </div>
 
-                                <!-- Langkah 4: Layanan & Aset (Baru) -->
+                                <!-- Langkah 4: Aset & Penduduk (Baru) -->
                                 <div class="tab-pane fade" id="step-4" role="tabpanel">
-                                    <h5 class="fw-bold mb-4">Langkah 3: Pencatatan Layanan & Aset</h5>
-                                    <div class="card bg-light border-0 p-3 mb-3">
-                                        <h6 class="fw-bold small mb-2"><i class="bi bi-info-circle me-1"></i> Opsional: Gunakan jika input ini terkait Layanan atau Aset</h6>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <label class="form-label small">Jenis Layanan</label>
-                                                <select class="form-select form-select-sm">
-                                                    <option selected>Bukan Layanan</option>
-                                                    <option>Surat Keterangan</option>
-                                                    <option>Administrasi Kependudukan</option>
-                                                    <option>Izin Usaha Desa</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 mb-2">
-                                                <label class="form-label small">Kategori Aset</label>
-                                                <select class="form-select form-select-sm">
-                                                    <option selected>Bukan Aset</option>
-                                                    <option>Tanah/Lahan</option>
-                                                    <option>Peralatan</option>
-                                                    <option>Kendaraan</option>
-                                                </select>
-                                            </div>
+                                    <h5 class="fw-bold mb-4">Langkah 3: Pencatatan Aset & Penduduk</h5>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-bold">Kategori Aset</label>
+                                            <select class="form-select form-select-sm">
+                                                <option selected>Bukan Aset</option>
+                                                <option>Tanah/Lahan</option>
+                                                <option>Peralatan</option>
+                                                <option>Kendaraan</option>
+                                            </select>
                                         </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label small fw-bold">Kondisi Aset</label>
+                                            <select class="form-select form-select-sm">
+                                                <option>Baik</option>
+                                                <option>Rusak Ringan</option>
+                                                <option>Rusak Berat</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="mb-3">
+                                        <label class="form-label small fw-bold">Data Penduduk (Jika Relevan)</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="Cari NIK atau Nama...">
                                     </div>
                                     <div class="text-end mt-4">
                                         <button type="button" class="btn btn-outline-secondary px-4 me-2" onclick="document.getElementById('step-2-tab').click()">Kembali</button>

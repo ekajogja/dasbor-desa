@@ -257,9 +257,37 @@
                     </div>
 
                     <div class="card mt-4 p-4">
-                        <h5 class="fw-bold mb-4">Cashflow Bulanan (APBDes)</h5>
-                        <div style="height: 300px; position: relative;">
-                            <canvas id="cashflowChart"></canvas>
+                        <h5 class="fw-bold mb-4">Analitik Keuangan & Kegiatan</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <h6 class="small fw-bold">Cashflow Bulanan (APBDes)</h6>
+                                <div style="height: 250px; position: relative;">
+                                    <canvas id="cashflowChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <h6 class="small fw-bold">Deviasi Anggaran per Kegiatan</h6>
+                                <div style="height: 250px; position: relative;">
+                                    <canvas id="deviationChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="small fw-bold">Ranking Progres Kegiatan</h6>
+                                <div style="height: 250px; position: relative;">
+                                    <canvas id="rankingChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-md-6 text-center d-flex flex-column justify-content-center border-start">
+                                <h6 class="small fw-bold">Deteksi Anomali Realisasi</h6>
+                                <div class="alert alert-warning py-2 small mb-0">
+                                    <i class="bi bi-exclamation-circle-fill me-1"></i> Lonjakan realisasi di Kegiatan "Rehabilitasi Posyandu" (>40% dlm 1 minggu).
+                                </div>
+                                <div class="alert alert-info py-2 small mt-2 mb-0">
+                                    Sistem mendeteksi 1 transaksi tanpa dokumen pendukung di Bidang Ekonomi.
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -295,6 +323,14 @@
                 </div>
 
                 <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Analitik Layanan</h5>
+                    <div class="card p-3 mb-4">
+                        <h6 class="small fw-bold mb-3">Distribusi Waktu Penyelesaian</h6>
+                        <div style="height: 200px; position: relative;">
+                            <canvas id="serviceDistributionChart"></canvas>
+                        </div>
+                    </div>
+
                     <h5 class="fw-bold mb-3">Beban Layanan (Heatmap)</h5>
                     <div class="card p-3 mb-4">
                         <div class="d-flex flex-wrap gap-1">
@@ -410,6 +446,63 @@
                 plugins: {
                     legend: { position: 'bottom' }
                 }
+            }
+        });
+
+        // Deviation Chart
+        const ctxDeviation = document.getElementById('deviationChart').getContext('2d');
+        new Chart(ctxDeviation, {
+            type: 'bar',
+            data: {
+                labels: ['Kgt 1', 'Kgt 2', 'Kgt 3', 'Kgt 4'],
+                datasets: [{
+                    label: 'Deviasi (%)',
+                    data: [5, -12, 3, -25],
+                    backgroundColor: (ctx) => ctx.raw < 0 ? '#dc3545' : '#198754'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Ranking Chart
+        const ctxRanking = document.getElementById('rankingChart').getContext('2d');
+        new Chart(ctxRanking, {
+            type: 'bar',
+            data: {
+                labels: ['Rabat Beton', 'Posyandu', 'Pertanian', 'Drainase'],
+                datasets: [{
+                    label: 'Progres (%)',
+                    data: [100, 65, 30, 15],
+                    backgroundColor: '#0d6efd'
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+
+        // Service Distribution Chart
+        const ctxServiceDist = document.getElementById('serviceDistributionChart').getContext('2d');
+        new Chart(ctxServiceDist, {
+            type: 'doughnut',
+            data: {
+                labels: ['<1 Hari', '1-2 Hari', '>3 Hari'],
+                datasets: [{
+                    data: [65, 25, 10],
+                    backgroundColor: ['#198754', '#ffc107', '#dc3545']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'bottom' } }
             }
         });
     </script>

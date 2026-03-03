@@ -216,6 +216,9 @@
                         <button class="nav-link" id="anggaran-tab" data-bs-toggle="tab" data-bs-target="#anggaran" type="button" role="tab">APBDes</button>
                     </li>
                     <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="transaksi-tab" data-bs-toggle="tab" data-bs-target="#transaksi" type="button" role="tab">Transaksi</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
                         <button class="nav-link" id="kegiatan-tab" data-bs-toggle="tab" data-bs-target="#kegiatan" type="button" role="tab">Kegiatan</button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -223,6 +226,9 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="aset-tab" data-bs-toggle="tab" data-bs-target="#aset" type="button" role="tab">Aset</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="audit-tab" data-bs-toggle="tab" data-bs-target="#audit" type="button" role="tab">Audit Log</button>
                     </li>
                 </ul>
                 <div class="tab-content p-4" id="dataTabsContent">
@@ -292,6 +298,7 @@
                                     <tr>
                                         <th>Bidang</th>
                                         <th>Sub Bidang / Jenis</th>
+                                        <th>Jenis Belanja</th>
                                         <th class="text-end">Pagu (Rp)</th>
                                         <th class="text-end">Realisasi (Rp)</th>
                                         <th class="text-center">Serapan</th>
@@ -302,6 +309,7 @@
                                     <tr>
                                         <td>Penyelenggaraan Pemerintahan</td>
                                         <td>Penghasilan Tetap & Tunjangan</td>
+                                        <td>Operasional</td>
                                         <td class="text-end">850.000.000</td>
                                         <td class="text-end">425.000.000</td>
                                         <td class="text-center"><span class="badge bg-primary">50%</span></td>
@@ -312,9 +320,40 @@
                                     <tr>
                                         <td>Pembangunan Desa</td>
                                         <td>Pembangunan Jalan Desa</td>
+                                        <td>Pembangunan</td>
                                         <td class="text-end">450.000.000</td>
                                         <td class="text-end">450.000.000</td>
                                         <td class="text-center"><span class="badge bg-success">100%</span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab Transaksi Realisasi -->
+                    <div class="tab-pane fade" id="transaksi" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Kegiatan / Item</th>
+                                        <th>Uraian</th>
+                                        <th class="text-end">Jumlah (Rp)</th>
+                                        <th>Bukti</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>20/05/2024</td>
+                                        <td>Pembangunan Rabat Beton RW 04</td>
+                                        <td>Pembelian Semen 100 Sak</td>
+                                        <td class="text-end">6.500.000</td>
+                                        <td><span class="badge bg-info"><i class="bi bi-file-earmark-image"></i> Lihat</span></td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
                                         </td>
@@ -434,6 +473,39 @@
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
                                         </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab Audit Log -->
+                    <div class="tab-pane fade" id="audit" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Timestamp</th>
+                                        <th>User</th>
+                                        <th>Aksi</th>
+                                        <th>Tabel</th>
+                                        <th>Record ID</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>24/05/2024 10:15</td>
+                                        <td>Admin Desa</td>
+                                        <td>UPDATE</td>
+                                        <td>kegiatan</td>
+                                        <td>KGT-001</td>
+                                    </tr>
+                                    <tr>
+                                        <td>24/05/2024 09:45</td>
+                                        <td>Budi (Operator)</td>
+                                        <td>INSERT</td>
+                                        <td>penduduk</td>
+                                        <td>3504XXXXXXXX</td>
                                     </tr>
                                 </tbody>
                             </table>

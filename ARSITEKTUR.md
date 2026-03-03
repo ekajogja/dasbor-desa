@@ -19,21 +19,14 @@ Dokumen ini menjelaskan arsitektur teknis sistem Dasbor Desa dengan fokus pada i
 
 ### Posisi Dasbor Desa
 
-```
-┌─────────────────┐         ┌─────────────────┐
-│   SISKEUDES     │────────▶│  Laporan Excel  │
-│  (Keuangan)     │         │   Realisasi     │
-└─────────────────┘         └────────┬────────┘
-                                     │
-┌─────────────────┐         ┌────────▼────────┐         ┌─────────────────┐
-│   Prodeskel     │────────▶│  DASBOR DESA    │────────▶│  Dashboard      │
-│ (Kependudukan)  │         │  (Agregasi &    │         │  Publik         │
-└─────────────────┘         │   Visualisasi)  │         └─────────────────┘
-                            └────────┬────────┘
-┌─────────────────┐                 │                   ┌─────────────────┐
-│  SIMDABUMAS     │────────▶────────┘                   │  Laporan        │
-│  (Layanan)      │                                     │  Triwulan       │
-└─────────────────┘                                     └─────────────────┘
+```mermaid
+graph TD
+    "SISKEUDES (Keuangan)" --> "Laporan Excel Realisasi"
+    "Laporan Excel Realisasi" --> "DASBOR DESA (Agregasi & Visualisasi)"
+    "Prodeskel (Kependudukan)" --> "DASBOR DESA (Agregasi & Visualisasi)"
+    "SIMDABUMAS (Layanan)" --> "DASBOR DESA (Agregasi & Visualisasi)"
+    "DASBOR DESA (Agregasi & Visualisasi)" --> "Dashboard Publik"
+    "DASBOR DESA (Agregasi & Visualisasi)" --> "Laporan Triwulan"
 ```
 
 **Prinsip**: Dasbor Desa adalah layer visualisasi dan analitik, bukan sistem sumber data primer.
@@ -44,41 +37,41 @@ Dokumen ini menjelaskan arsitektur teknis sistem Dasbor Desa dengan fokus pada i
 
 ### Stack Teknologi
 
-```
-┌──────────────────────────────────────────────────┐
-│                   Browser                         │
-│  (Chrome/Firefox/Safari - Desktop & Mobile)      │
-└────────────┬─────────────────────────────────────┘
-             │
-             │ HTTPS
-             ▼
-┌──────────────────────────────────────────────────┐
-│              Frontend Layer                       │
-│  • Bootstrap 5 (CSS Framework)                   │
-│  • HTMX (Dynamic Interactivity)                  │
-│  • Chart.js (Grafik)                             │
-│  • Leaflet.js (Peta)                             │
-│  • Django Template Language                      │
-└────────────┬─────────────────────────────────────┘
-             │
-             │ Template Rendering
-             ▼
-┌──────────────────────────────────────────────────┐
-│              Backend Layer                        │
-│  • Django 5.x (Python Web Framework)             │
-│  • Django ORM (Database Abstraction)             │
-│  • Django REST Framework (API - Optional)        │
-│  • Celery (Background Tasks - Optional)          │
-│  • django-simple-history (Audit Trail)           │
-└────────────┬─────────────────────────────────────┘
-             │
-             │ SQL Queries
-             ▼
-┌──────────────────────────────────────────────────┐
-│              Database Layer                       │
-│  • PostgreSQL 14+ (Primary)                      │
-│  • SQLite (Development Only)                     │
-└──────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Client ["Browser"]
+        A["Chrome/Firefox/Safari - Desktop & Mobile"]
+    end
+
+    A -- "HTTPS" --> FL
+
+    subgraph FL ["Frontend Layer"]
+        direction TB
+        B1["Bootstrap 5 (CSS Framework)"]
+        B2["HTMX (Dynamic Interactivity)"]
+        B3["Chart.js (Grafik)"]
+        B4["Leaflet.js (Peta)"]
+        B5["Django Template Language"]
+    end
+
+    FL -- "Template Rendering" --> BL
+
+    subgraph BL ["Backend Layer"]
+        direction TB
+        C1["Django 5.x (Python Web Framework)"]
+        C2["Django ORM (Database Abstraction)"]
+        C3["Django REST Framework (API - Optional)"]
+        C4["Celery (Background Tasks - Optional)"]
+        C5["django-simple-history (Audit Trail)"]
+    end
+
+    BL -- "SQL Queries" --> DL
+
+    subgraph DL ["Database Layer"]
+        direction TB
+        D1["PostgreSQL 14+ (Primary)"]
+        D2["SQLite (Development Only)"]
+    end
 ```
 
 ### Deployment Options
@@ -109,63 +102,124 @@ Dokumen ini menjelaskan arsitektur teknis sistem Dasbor Desa dengan fokus pada i
 
 ### ERD (Entity Relationship Diagram)
 
-```
-┌─────────────────────┐
-│  StatistikPenduduk  │
-│  - periode          │
-│  - jumlah_kk        │
-│  - jumlah_jiwa      │
-│  - usia_produktif   │
-│  - penerima_bansos  │
-└─────────────────────┘
+```mermaid
+erDiagram
+    StatistikPenduduk {
+        date periode PK
+        int jumlah_kk
+        int jumlah_jiwa
+        int laki_laki
+        int perempuan
+        int usia_0_5
+        int usia_6_17
+        int usia_18_59
+        int usia_60_plus
+        int penerima_bpnt
+        int penerima_pkh
+        int penerima_bst
+        int partisipan_musrenbang
+    }
 
-┌─────────────────────┐         ┌─────────────────────┐
-│      APBDes         │         │     Kegiatan        │
-│  - tahun            │         │  - nama             │
-│  - kode_rekening    │◀───────▶│  - bidang           │
-│  - uraian           │   FK    │  - nilai_anggaran   │
-│  - pagu             │         │  - progres_persen   │
-│  - realisasi        │         │  - tanggal_mulai    │
-└─────────┬───────────┘         └─────────┬───────────┘
-          │                               │
-          │ FK                            │ FK
-          ▼                               ▼
-┌─────────────────────┐         ┌─────────────────────┐
-│ TransaksiRealisasi  │         │   FotoProgres       │
-│  - tanggal          │         │  - tanggal_upload   │
-│  - uraian           │         │  - file_path        │
-│  - jumlah           │         │  - keterangan       │
-│  - bukti_dokumen    │         └─────────────────────┘
-└─────────────────────┘
+    KodeRekening {
+        string kode PK
+        int level
+        string nama
+        boolean is_active
+    }
 
-┌─────────────────────┐
-│   LayananPublik     │
-│  - jenis_layanan    │
-│  - tanggal_masuk    │
-│  - tanggal_selesai  │
-│  - waktu_proses     │
-│  - status           │
-└─────────────────────┘
+    APBDes {
+        int tahun
+        string uraian
+        decimal pagu
+        decimal realisasi
+        string sumber_dana
+        boolean is_perubahan
+    }
 
-┌─────────────────────┐
-│      AsetDesa       │
-│  - nama_aset        │
-│  - kategori         │
-│  - tahun_perolehan  │
-│  - nilai_perolehan  │
-│  - kondisi          │
-└─────────────────────┘
+    Kegiatan {
+        string nama
+        string bidang
+        text deskripsi
+        string lokasi
+        decimal latitude
+        decimal longitude
+        decimal nilai_anggaran
+        date tanggal_mulai
+        date target_selesai
+        date tanggal_selesai_aktual
+        int progres_persen
+        string penanggung_jawab
+        string status
+    }
 
-┌─────────────────────┐
-│     AuditLog        │
-│  - user             │
-│  - aksi             │
-│  - tabel            │
-│  - record_id        │
-│  - nilai_lama       │
-│  - nilai_baru       │
-│  - timestamp        │
-└─────────────────────┘
+    FotoProgres {
+        string file_path
+        date tanggal_upload
+        int progres_saat_foto
+        text keterangan
+    }
+
+    TransaksiRealisasi {
+        date tanggal
+        text uraian
+        decimal jumlah
+        string bukti_dokumen
+        string status_verifikasi
+        text catatan_verifikasi
+    }
+
+    LayananPublik {
+        string jenis_layanan
+        string pemohon_nama
+        string pemohon_nik
+        datetime tanggal_masuk
+        datetime tanggal_selesai
+        int waktu_proses_hari
+        string status
+        text catatan
+        int rating_kepuasan
+    }
+
+    AsetDesa {
+        string kode_aset PK
+        string nama_aset
+        string kategori
+        int tahun_perolehan
+        decimal nilai_perolehan
+        string kondisi
+        string lokasi
+        decimal latitude
+        decimal longitude
+        string foto
+    }
+
+    User {
+        string username PK
+        string password
+        string email
+        string first_name
+        string last_name
+        boolean is_active
+        boolean is_staff
+    }
+
+    AuditLog {
+        datetime history_date
+        string history_type
+        int record_id
+    }
+
+    KodeRekening ||--o{ KodeRekening : "parent"
+    KodeRekening ||--o{ APBDes : "dianggarkan_dalam"
+    APBDes ||--o{ TransaksiRealisasi : "memiliki"
+    APBDes ||--o| Kegiatan : "mendanai"
+    Kegiatan ||--o{ FotoProgres : "memiliki"
+    Kegiatan ||--o{ TransaksiRealisasi : "mencatat"
+    User ||--o{ FotoProgres : "unggah_oleh"
+    User ||--o{ TransaksiRealisasi : "input_oleh"
+    User ||--o{ TransaksiRealisasi : "verifikasi_oleh"
+    User ||--o{ LayananPublik : "petugas_handle"
+    User ||--o{ AuditLog : "aksi_oleh"
 ```
 
 ### Detail Model
@@ -382,71 +436,55 @@ Setiap model kritikal (APBDes, Transaksi, Kegiatan) memiliki tracking history ot
 
 ### A. Area Publik (No Login Required)
 
-```
-┌─────────────────────────────────────────┐
-│         Landing Page (/)                │
-│  - Hero section                         │
-│  - Link ke Dashboard Publik             │
-│  - Info kontak desa                     │
-└────────────┬────────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────────┐
-│    Dashboard Publik (/publik/)          │
-│  - Ringkasan APBDes tahun ini           │
-│  - 4 Indikator Visioner (gauge charts)  │
-│  - Tabel kegiatan berjalan              │
-│  - Grafik realisasi per bulan           │
-│  - Statistik layanan                    │
-└────────────┬────────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────────┐
-│  Detail Kegiatan (/publik/kegiatan/:id) │
-│  - Info lengkap kegiatan                │
-│  - Foto progres timeline                │
-│  - Peta lokasi                          │
-└─────────────────────────────────────────┘
+```mermaid
+graph TD
+    A["Landing Page (/)\n- Hero section\n- Link ke Dashboard Publik\n- Info kontak desa"]
+    B["Dashboard Publik (/publik/)\n- Ringkasan APBDes tahun ini\n- 4 Indikator Visioner\n- Tabel kegiatan berjalan\n- Grafik realisasi per bulan\n- Statistik layanan"]
+    C["Detail Kegiatan (/publik/kegiatan/:id)\n- Info lengkap kegiatan\n- Foto progres timeline\n- Peta lokasi"]
+
+    A --> B
+    B --> C
 ```
 
 ### B. Area Privat (Login Required)
 
-```
-┌─────────────────────────────────────────┐
-│         Login (/login/)                 │
-│  - Username/password                    │
-│  - Remember me                          │
-└────────────┬────────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────────┐
-│    Dashboard Privat (/dashboard/)       │
-│  SIDEBAR NAVIGATION:                    │
-│  ├─ Dashboard                           │
-│  ├─ Data Master                         │
-│  │  ├─ Statistik Penduduk               │
-│  │  ├─ APBDes                           │
-│  │  ├─ Kegiatan                         │
-│  │  ├─ Layanan                          │
-│  │  └─ Aset                             │
-│  ├─ Input Data                          │
-│  │  ├─ Impor APBDes (Excel)             │
-│  │  ├─ Impor Layanan (CSV)              │
-│  │  ├─ Input Kegiatan (Form)            │
-│  │  └─ Input Transaksi (Form)           │
-│  ├─ Laporan                             │
-│  │  ├─ Ekspor LPJ (Word)                │
-│  │  ├─ Ekspor Realisasi (Excel)         │
-│  │  └─ Format SIPEDE (Excel)            │
-│  ├─ Analitik                            │
-│  │  ├─ Cashflow Analysis                │
-│  │  ├─ Deteksi Anomali                  │
-│  │  └─ Indikator Trend                  │
-│  └─ Administrasi (Admin Only)           │
-│     ├─ Manajemen User                   │
-│     ├─ Audit Log                        │
-│     └─ Pengaturan Sistem                │
-└─────────────────────────────────────────┘
+```mermaid
+graph TD
+    Login["Login (/login/)\n- Username/password\n- Remember me"]
+    DashP["Dashboard Privat (/dashboard/)"]
+
+    Login --> DashP
+
+    subgraph Sidebar ["Navigasi Sidebar"]
+        DashP --> DM["Data Master"]
+        DashP --> ID["Input Data"]
+        DashP --> LP["Laporan"]
+        DashP --> AN["Analitik"]
+        DashP --> AD["Administrasi (Admin Only)"]
+
+        DM --> DM1["Statistik Penduduk"]
+        DM --> DM2["APBDes"]
+        DM --> DM3["Kegiatan"]
+        DM --> DM4["Layanan"]
+        DM --> DM5["Aset"]
+
+        ID --> ID1["Impor APBDes (Excel)"]
+        ID --> ID2["Impor Layanan (CSV)"]
+        ID --> ID3["Input Kegiatan (Form)"]
+        ID --> ID4["Input Transaksi (Form)"]
+
+        LP --> LP1["Ekspor LPJ (Word)"]
+        LP --> LP2["Ekspor Realisasi (Excel)"]
+        LP --> LP3["Format SIPEDE (Excel)"]
+
+        AN --> AN1["Cashflow Analysis"]
+        AN --> AN2["Deteksi Anomali"]
+        AN --> AN3["Indikator Trend"]
+
+        AD --> AD1["Manajemen User"]
+        AD --> AD2["Audit Log"]
+        AD --> AD3["Pengaturan Sistem"]
+    end
 ```
 
 ### C. URL Structure

@@ -210,13 +210,19 @@
             <div class="card p-0">
                 <ul class="nav nav-tabs nav-tabs-custom px-3 pt-2" id="dataTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="penduduk-tab" data-bs-toggle="tab" data-bs-target="#penduduk" type="button" role="tab">Data Penduduk</button>
+                        <button class="nav-link active" id="penduduk-tab" data-bs-toggle="tab" data-bs-target="#penduduk" type="button" role="tab">Penduduk</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="anggaran-tab" data-bs-toggle="tab" data-bs-target="#anggaran" type="button" role="tab">Anggaran (APBDes)</button>
+                        <button class="nav-link" id="anggaran-tab" data-bs-toggle="tab" data-bs-target="#anggaran" type="button" role="tab">APBDes</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="kegiatan-tab" data-bs-toggle="tab" data-bs-target="#kegiatan" type="button" role="tab">Daftar Kegiatan</button>
+                        <button class="nav-link" id="kegiatan-tab" data-bs-toggle="tab" data-bs-target="#kegiatan" type="button" role="tab">Kegiatan</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="layanan-tab" data-bs-toggle="tab" data-bs-target="#layanan" type="button" role="tab">Layanan</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="aset-tab" data-bs-toggle="tab" data-bs-target="#aset" type="button" role="tab">Aset</button>
                     </li>
                 </ul>
                 <div class="tab-content p-4" id="dataTabsContent">
@@ -271,37 +277,160 @@
                             </table>
                         </div>
                     </div>
-                    <!-- Tab Anggaran (Empty for Demo) -->
+                    <!-- Tab Anggaran (APBDes) -->
                     <div class="tab-pane fade" id="anggaran" role="tabpanel">
-                        <div class="text-center py-5">
-                            <i class="bi bi-wallet2 fs-1 text-muted opacity-25"></i>
-                            <p class="mt-3 text-muted">Belum ada data anggaran di periode ini.</p>
-                            <button class="btn btn-sm btn-primary">Mulai Input Anggaran</button>
+                        <div class="d-flex justify-content-between mb-3">
+                            <select class="form-select form-select-sm w-auto">
+                                <option>Tahun 2024</option>
+                                <option>Tahun 2023</option>
+                            </select>
+                            <button class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Tambah Item APBDes</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Bidang</th>
+                                        <th>Sub Bidang / Jenis</th>
+                                        <th class="text-end">Pagu (Rp)</th>
+                                        <th class="text-end">Realisasi (Rp)</th>
+                                        <th class="text-center">Serapan</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Penyelenggaraan Pemerintahan</td>
+                                        <td>Penghasilan Tetap & Tunjangan</td>
+                                        <td class="text-end">850.000.000</td>
+                                        <td class="text-end">425.000.000</td>
+                                        <td class="text-center"><span class="badge bg-primary">50%</span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pembangunan Desa</td>
+                                        <td>Pembangunan Jalan Desa</td>
+                                        <td class="text-end">450.000.000</td>
+                                        <td class="text-end">450.000.000</td>
+                                        <td class="text-center"><span class="badge bg-success">100%</span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <!-- Tab Kegiatan (Empty for Demo) -->
+
+                    <!-- Tab Kegiatan -->
                     <div class="tab-pane fade" id="kegiatan" role="tabpanel">
                          <div class="table-responsive">
                             <table class="table table-hover align-middle small">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Kegiatan</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th>Lokasi</th>
                                         <th>Anggaran</th>
-                                        <th>Status</th>
                                         <th>Progres</th>
+                                        <th>Penanggung Jawab</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="fw-bold">Pembangunan Rabat Beton RW 04</td>
-                                        <td>Rp 150.000.000</td>
-                                        <td><span class="badge bg-success">Selesai</span></td>
-                                        <td style="width: 150px;">
-                                            <div class="progress" style="height: 8px;">
+                                        <td>Dusun Krajan, RW 04</td>
+                                        <td>150.000.000</td>
+                                        <td style="width: 120px;">
+                                            <div class="progress" style="height: 6px;">
                                                 <div class="progress-bar bg-success" style="width: 100%"></div>
                                             </div>
+                                            <small class="text-muted">100%</small>
                                         </td>
+                                        <td>Kasi Kesejahteraan</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
+                                            <button class="btn btn-sm btn-light"><i class="bi bi-camera"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab Layanan -->
+                    <div class="tab-pane fade" id="layanan" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>No. Register</th>
+                                        <th>Jenis Layanan</th>
+                                        <th>Pemohon</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>Status</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>REG/2024/05/001</td>
+                                        <td>Surat Keterangan Domisili</td>
+                                        <td>Budi Santoso</td>
+                                        <td>23/05/2024</td>
+                                        <td><span class="badge bg-success">Selesai</span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-light"><i class="bi bi-printer"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>REG/2024/05/002</td>
+                                        <td>Surat Pengantar SKU</td>
+                                        <td>Ani Maryani</td>
+                                        <td>24/05/2024</td>
+                                        <td><span class="badge bg-warning text-dark">Diproses</span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-primary btn-sm">Selesaikan</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab Aset -->
+                    <div class="tab-pane fade" id="aset" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nama Aset</th>
+                                        <th>Kategori</th>
+                                        <th>Tahun Perolehan</th>
+                                        <th>Nilai Perolehan</th>
+                                        <th>Kondisi</th>
+                                        <th class="text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold">Laptop Acer Aspire</td>
+                                        <td>Peralatan Kantor</td>
+                                        <td>2022</td>
+                                        <td>Rp 7.500.000</td>
+                                        <td><span class="badge bg-success">Baik</span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">Sepeda Motor Honda Win</td>
+                                        <td>Kendaraan Dinas</td>
+                                        <td>2010</td>
+                                        <td>Rp 12.000.000</td>
+                                        <td><span class="badge bg-warning text-dark">Rusak Ringan</span></td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-light"><i class="bi bi-pencil"></i></button>
                                         </td>

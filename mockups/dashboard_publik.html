@@ -202,6 +202,47 @@
                 <div class="text-muted small">Update Terakhir: 24 Mei 2024</div>
             </div>
 
+            <!-- Ringkasan Tahunan Table -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card p-4">
+                        <h5 class="fw-bold mb-3">Indikator Ringkasan Tahunan</h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle small mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Tahun</th>
+                                        <th>Total Anggaran</th>
+                                        <th>Total Realisasi</th>
+                                        <th>Serapan (%)</th>
+                                        <th>Indeks Pelayanan</th>
+                                        <th>Indeks Transparansi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-primary fw-bold">
+                                        <td>2024 (Berjalan)</td>
+                                        <td>Rp 3,2 M</td>
+                                        <td>Rp 2,4 M</td>
+                                        <td>75%</td>
+                                        <td>85.2</td>
+                                        <td>90.5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2023</td>
+                                        <td>Rp 3,0 M</td>
+                                        <td>Rp 2,9 M</td>
+                                        <td>96%</td>
+                                        <td>82.4</td>
+                                        <td>88.0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Stats Row -->
             <div class="row">
                 <div class="col-md-3">
@@ -285,8 +326,21 @@
 
             <!-- Row: Tables and More Charts -->
             <div class="row mt-2">
+                <!-- Komposisi Belanja Pie Chart -->
+                <div class="col-lg-4">
+                    <div class="card p-4 h-100">
+                        <h5 class="fw-bold mb-4">Komposisi Belanja</h5>
+                        <div style="height: 250px; position: relative;">
+                            <canvas id="expensePieChart"></canvas>
+                        </div>
+                        <div class="mt-3 small text-muted">
+                            <i class="bi bi-info-circle me-1"></i> Perbandingan Operasional vs Pembangunan.
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Kegiatan Berjalan Table -->
-                <div class="col-lg-7">
+                <div class="col-lg-8">
                     <div class="card p-4 h-100">
                         <h5 class="fw-bold mb-4">Kegiatan Berjalan</h5>
                         <div class="table-responsive">
@@ -353,15 +407,52 @@
 
             <!-- Row: Service Stats and Asset Summary -->
             <div class="row mt-2">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card p-4 h-100">
-                        <h5 class="fw-bold mb-4">Statistik Layanan Bulanan</h5>
+                        <h5 class="fw-bold mb-4">Tren Layanan Publik</h5>
                         <div style="height: 250px; position: relative;">
-                            <canvas id="serviceChart"></canvas>
+                            <canvas id="serviceLineChart"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
+                    <div class="card p-4 h-100">
+                        <h5 class="fw-bold mb-4">Statistik Layanan</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle small mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Bulan</th>
+                                        <th class="text-center">Surat</th>
+                                        <th class="text-center">Masuk</th>
+                                        <th class="text-end">Rata2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Mei</td>
+                                        <td class="text-center">52</td>
+                                        <td class="text-center">55</td>
+                                        <td class="text-end">1.2 Hari</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apr</td>
+                                        <td class="text-center">58</td>
+                                        <td class="text-center">60</td>
+                                        <td class="text-end">1.5 Hari</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mar</td>
+                                        <td class="text-center">45</td>
+                                        <td class="text-center">48</td>
+                                        <td class="text-end">1.1 Hari</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
                     <div class="card p-4 h-100">
                         <h5 class="fw-bold mb-4">Ringkasan Aset Desa</h5>
                         <div class="table-responsive">
@@ -502,20 +593,15 @@
             }
         });
 
-        // Bar Chart: Layanan Bulanan
-        const ctxService = document.getElementById('serviceChart').getContext('2d');
-        new Chart(ctxService, {
-            type: 'bar',
+        // Pie Chart: Komposisi Belanja
+        const ctxExpense = document.getElementById('expensePieChart').getContext('2d');
+        new Chart(ctxExpense, {
+            type: 'pie',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                labels: ['Operasional', 'Pembangunan'],
                 datasets: [{
-                    label: 'Permohonan Masuk',
-                    data: [45, 52, 48, 60, 55, 65],
-                    backgroundColor: 'rgba(13, 110, 253, 0.7)'
-                }, {
-                    label: 'Surat Terbit',
-                    data: [40, 50, 45, 58, 52, 60],
-                    backgroundColor: 'rgba(25, 135, 84, 0.7)'
+                    data: [35, 65],
+                    backgroundColor: ['#6c757d', '#198754'],
                 }]
             },
             options: {
@@ -523,6 +609,33 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: { position: 'bottom' }
+                }
+            }
+        });
+
+        // Line Chart: Tren Layanan
+        const ctxService = document.getElementById('serviceLineChart').getContext('2d');
+        new Chart(ctxService, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{
+                    label: 'Jumlah Layanan',
+                    data: [140, 160, 155, 180, 175, 210],
+                    borderColor: '#0dcaf0',
+                    backgroundColor: 'rgba(13, 202, 240, 0.1)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: { beginAtZero: true }
                 }
             }
         });

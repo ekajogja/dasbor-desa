@@ -8,20 +8,24 @@ Struktur navigasi Dasbor Desa dibagi menjadi dua area utama: **Publik** dan **Te
 
 ### A. Area Publik (Tanpa Login)
 - **Landing Page (`index.html`)**: Gerbang utama, informasi umum, dan tautan ke modul mockup.
-- **Beranda Publik (`dashboard_publik.html`)**: Ringkasan indikator desa, grafik APBDes, dan peta lokasi desa.
-- **Detail Informasi**: Halaman statis untuk informasi transparansi lainnya.
+- **Beranda Publik (`dashboard_publik.html`)**: Ringkasan indikator desa (Pelayanan, Transparansi, Partisipasi, Ketahanan), grafik realisasi APBDes, progres kegiatan berjalan, statistik layanan bulanan, dan ringkasan aset.
+- **Detail Informasi (`detail_data.html`)**: Tampilan rincian dari satu entri data publik (misal: detail satu kegiatan).
 
 ### B. Area Terbatas (Setelah Login)
-- **Halaman Login (`login.html`)**: Otentikasi pengguna.
-- **Beranda Privat (`dashboard_privat.html`)**: Ringkasan operasional dan akses cepat ke fungsi manajemen.
+- **Halaman Login (`login.html`)**: Otentikasi pengguna (Admin/Operator).
+- **Beranda Privat (`dashboard_privat.html`)**: Ringkasan operasional (permohonan layanan, lapor kegiatan), analitik cashflow, deviasi anggaran, distribusi waktu layanan, dan audit log terbaru.
 - **Modul Data (Tabel & Tabs) (`tabel_data.html`)**:
     - Tab 1: Data Penduduk
     - Tab 2: Anggaran (APBDes)
-    - Tab 3: Progres Kegiatan
+    - Tab 3: Transaksi Realisasi (Detail pengeluaran)
+    - Tab 4: Progres Kegiatan
+    - Tab 5: Layanan Publik
+    - Tab 6: Aset Desa
+    - Tab 7: Audit Log (Hanya Admin)
 - **Modul Input (Form & Tabs) (`form_input.html`)**:
-    - Tab 1: Informasi Dasar
-    - Tab 2: Detail Anggaran
-    - Tab 3: Lampiran Dokumen
+    - Tab 1: Form APBDes & Kegiatan
+    - Tab 2: Form Realisasi & Layanan
+    - Tab 3: Form Aset & Pendukung
 - **Administrasi Pengguna (`admin_user.html`)**: Manajemen akun operator desa dan hak akses.
 - **Pengaturan Profil (`profil.html`)**: Update informasi akun sendiri.
 
@@ -40,10 +44,11 @@ Struktur navigasi Dasbor Desa dibagi menjadi dua area utama: **Publik** dan **Te
 
 ### Alur Operator/Admin (Privat)
 1. User melakukan **Login**.
-2. Diarahkan ke **Beranda Privat** (Dashboard Internal).
-3. Menggunakan sidebar untuk navigasi ke **Tabel Data** atau **Form Input**.
-4. Mengisi data melalui **Form Berjenjang (Tabs)** untuk memecah form yang panjang.
-5. Admin dapat mengakses menu **Administrasi User** untuk mengelola tim operator.
+2. Diarahkan ke **Beranda Privat** (Dashboard Internal) untuk melihat anomali atau tugas mendesak.
+3. Menggunakan sidebar untuk navigasi ke **Tabel Data** (untuk monitoring detail) atau **Form Input** (untuk entri data baru).
+4. Mengisi data melalui **Form Berjenjang (Tabs)** yang divalidasi sistem.
+5. Data yang diinput akan secara otomatis mengupdate agregasi di **Beranda Publik**.
+6. Admin dapat mengakses menu **Administrasi User** untuk mengelola hak akses dan melihat **Audit Log**.
 
 ---
 

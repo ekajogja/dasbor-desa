@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Data Baru - Dasbor Desa - Dasbor Desa</title>
+    <title>Detail Kegiatan - Dasbor Desa - Dasbor Desa</title>
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -240,8 +240,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="dashboard_privat.html" class="text-decoration-none">Dashboard</a></li>
-<li class="breadcrumb-item active" aria-current="page">Input Data Baru</li>
+                        <li class="breadcrumb-item"><a href="dashboard_publik.html" class="text-decoration-none">Dashboard Publik</a></li>
+<li class="breadcrumb-item active" aria-current="page">Detail Kegiatan</li>
                     </ol>
                 </nav>
 
@@ -265,114 +265,129 @@
 
         <!-- Page Content Body -->
         <div class="content-body">
-            <h1 class="h3 fw-bold mb-4">Input Data Baru Secara Manual</h1>
+            <div class="row g-4 mb-4">
+    <!-- Konten Utama Detail (Publik) -->
+    <div class="col-lg-8">
+        <div class="card p-4 border-0 shadow-sm mb-4">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1">Pembangunan Jalan Rabat Beton RW 04</h2>
+                    <span class="badge bg-success px-3 py-2 mb-2">Selesai (100%)</span>
+                    <p class="text-muted small mb-0"><i class="bi bi-geo-alt me-1"></i> Dusun Krajan, RT 012 / RW 004, Desa Tiudan</p>
+                </div>
+                <div class="text-end text-muted small">
+                    ID Proyek: #KG-2024-001<br>
+                    Tahun Anggaran: 2024
+                </div>
+            </div>
 
-<div class="row g-4">
-    <!-- Katalog Jenis Input (Cards) -->
-    <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm action-card p-4">
-            <div class="text-primary fs-1 mb-3">
-                <i class="bi bi-activity"></i>
-            </div>
-            <h5 class="fw-bold">Kegiatan Pembangunan</h5>
-            <p class="small text-muted mb-4">Input detail kegiatan fisik, non-fisik, progres pembangunan, dan lampiran foto lapangan.</p>
-            <a href="form_kegiatan.html" class="btn btn-outline-primary btn-sm mt-auto fw-bold">Buka Form Kegiatan</a>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm action-card p-4">
-            <div class="text-success fs-1 mb-3">
-                <i class="bi bi-cash-stack"></i>
-            </div>
-            <h5 class="fw-bold">Transaksi Realisasi</h5>
-            <div class="mb-4">
-                <label class="form-label small fw-bold">Nomor SPJ / Uraian</label>
-                <input type="text" class="form-control form-control-sm mb-2" placeholder="Cari Kode APBDes...">
-                <input type="number" class="form-control form-control-sm mb-2" placeholder="Jumlah Rp">
-                <input type="date" class="form-control form-control-sm mb-2">
-                <input type="file" class="form-control form-control-sm">
-            </div>
-            <button class="btn btn-outline-success btn-sm mt-auto fw-bold">Simpan Transaksi</button>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card h-100 border-0 shadow-sm action-card p-4">
-            <div class="text-info fs-1 mb-3">
-                <i class="bi bi-headset"></i>
-            </div>
-            <h5 class="fw-bold">Layanan Publik Baru</h5>
-            <div class="mb-4">
-                <label class="form-label small fw-bold">Data Pemohon</label>
-                <input type="text" class="form-control form-control-sm mb-2" placeholder="Nama Pemohon">
-                <input type="text" class="form-control form-control-sm mb-2" placeholder="NIK (Jika Ada)">
-                <select class="form-select form-select-sm mb-2">
-                    <option selected>Jenis Layanan</option>
-                    <option>Surat Keterangan Usaha</option>
-                    <option>Surat Keterangan Domisili</option>
-                    <option>Administrasi Kependudukan</option>
-                </select>
-                <input type="datetime-local" class="form-control form-control-sm">
-            </div>
-            <button class="btn btn-outline-info btn-sm mt-auto fw-bold">Catat Layanan</button>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card h-100 border-0 shadow-sm p-4">
-            <div class="text-warning fs-1 mb-3">
-                <i class="bi bi-people"></i>
-            </div>
-            <h5 class="fw-bold">Statistik Penduduk (Agregat Bulanan)</h5>
-            <div class="row g-2">
-                <div class="col-6">
-                    <input type="month" class="form-control form-control-sm mb-2">
-                </div>
-                <div class="col-6">
-                    <input type="number" class="form-control form-control-sm mb-2" placeholder="Total KK">
-                </div>
-                <div class="col-6">
-                    <input type="number" class="form-control form-control-sm mb-2" placeholder="Total Jiwa">
-                </div>
-                <div class="col-6">
-                    <input type="number" class="form-control form-control-sm mb-2" placeholder="Penerima Bansos">
-                </div>
-            </div>
-            <button class="btn btn-outline-warning btn-sm mt-3 fw-bold">Update Statistik</button>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card h-100 border-0 shadow-sm p-4">
-            <div class="text-secondary fs-1 mb-3">
-                <i class="bi bi-box-seam"></i>
-            </div>
-            <h5 class="fw-bold">Aset Desa Baru</h5>
-            <div class="row g-2">
-                <div class="col-8">
-                    <input type="text" class="form-control form-control-sm mb-2" placeholder="Nama Barang/Aset">
-                </div>
-                <div class="col-4">
-                    <input type="number" class="form-control form-control-sm mb-2" placeholder="Thn Beli">
-                </div>
-                <div class="col-6">
-                    <select class="form-select form-select-sm mb-2">
-                        <option>Kategori Aset</option>
-                        <option>Tanah/Bangunan</option>
-                        <option>Peralatan/Mesin</option>
-                        <option>Kendaraan</option>
-                    </select>
-                </div>
-                <div class="col-6">
-                    <input type="number" class="form-control form-control-sm mb-2" placeholder="Nilai Pagu Rp">
-                </div>
-            </div>
-            <button class="btn btn-outline-secondary btn-sm mt-3 fw-bold">Catat Aset Baru</button>
-        </div>
-    </div>
-</div>
+            <hr class="my-4">
 
-<div class="alert alert-secondary mt-5 py-3 small border-0 d-flex align-items-center">
-    <i class="bi bi-info-circle-fill me-3 fs-4"></i>
-    <div>
-        <strong>Saran:</strong> Untuk data dalam jumlah besar (seperti APBDes tahunan atau log layanan bulanan), sebaiknya gunakan fitur <strong>Impor Data (Excel/CSV)</strong> melalui halaman <a href="tabel_data.html" class="text-decoration-none fw-bold">Kelola Data</a> untuk efisiensi waktu.
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Pagu Anggaran</label>
+                    <span class="fw-bold h4 text-primary">Rp 150.000.000</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Sumber Dana</label>
+                    <span class="fw-bold h5">Dana Desa (DD) Tahap 1</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Masa Pelaksanaan</label>
+                    <span class="fw-bold">12 Jan 2024 - 15 Mei 2024</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Pelaksana Kegiatan</label>
+                    <span class="fw-bold">Kasi Kesejahteraan (TPK Desa)</span>
+                </div>
+            </div>
+
+            <h5 class="fw-bold mb-3">Deskripsi Proyek</h5>
+            <p class="text-muted mb-4">Pembangunan jalan rabat beton sepanjang 250 meter dengan lebar 3 meter dan ketebalan 15 cm. Menggunakan material cor K-225 sesuai standar Bina Marga. Kegiatan ini bertujuan memperlancar akses transportasi warga di lingkungan padat penduduk RW 04.</p>
+
+            <h5 class="fw-bold mb-4">Timeline Progres & Dokumentasi</h5>
+            <div class="timeline-wrapper">
+                <div class="d-flex mb-5">
+                    <div class="me-4 text-center" style="width: 80px;">
+                        <span class="badge bg-primary rounded-pill mb-2">Mei 24</span>
+                        <div class="h3 fw-bold">100%</div>
+                    </div>
+                    <div class="flex-grow-1 card p-3 bg-light border-0 shadow-none">
+                        <h6 class="fw-bold mb-3">Pekerjaan Selesai (Serah Terima)</h6>
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1590060417641-f28325a91931?auto=format&fit=crop&q=80&w=400" alt="Foto Selesai" style="object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=400" alt="Foto Lapangan" style="object-fit: cover;">
+                                </div>
+                            </div>
+                        </div>
+                        <p class="small text-muted mb-0">Pekerjaan fisik telah selesai 100% dan telah diverifikasi oleh tim pelaksana teknis desa (TPK).</p>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-5 opacity-75">
+                    <div class="me-4 text-center" style="width: 80px;">
+                        <span class="badge bg-secondary rounded-pill mb-2">Mar 24</span>
+                        <div class="h3 fw-bold">50%</div>
+                    </div>
+                    <div class="flex-grow-1 card p-3 bg-white border shadow-none">
+                        <h6 class="fw-bold mb-3">Tahap Pengecoran Tengah Jalan</h6>
+                        <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden mb-2" style="max-width: 200px;">
+                            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=400" alt="Foto 50%" style="object-fit: cover;">
+                        </div>
+                        <p class="small text-muted mb-0">Pengecoran sepanjang 125 meter selesai, menunggu masa pengerasan sebelum dilanjutkan.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex opacity-50">
+                    <div class="me-4 text-center" style="width: 80px;">
+                        <span class="badge bg-secondary rounded-pill mb-2">Jan 24</span>
+                        <div class="h3 fw-bold">0%</div>
+                    </div>
+                    <div class="flex-grow-1 card p-3 bg-white border shadow-none">
+                        <h6 class="fw-bold mb-3">Kondisi Nol (Awal Proyek)</h6>
+                        <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden mb-2" style="max-width: 200px;">
+                             <img src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&q=80&w=400" alt="Foto 0%" style="object-fit: cover;">
+                        </div>
+                        <p class="small text-muted mb-0">Lokasi jalan rusak sebelum dimulai pengerjaan rabat beton.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel Informasi Sidebar -->
+    <div class="col-lg-4">
+        <!-- Lokasi di Peta -->
+        <div class="card p-4 border-0 shadow-sm mb-4">
+            <h5 class="fw-bold mb-3">Lokasi Kegiatan</h5>
+            <div id="project-map" class="map-container rounded mb-3" style="height: 250px;"></div>
+            <p class="small text-muted mb-0">Titik Koordinat: <code>-8.055, 111.845</code></p>
+        </div>
+
+        <!-- Ringkasan Anggaran (Radar/Pie mini) -->
+        <div class="card p-4 border-0 shadow-sm mb-4">
+            <h5 class="fw-bold mb-3">Realisasi Anggaran</h5>
+            <div style="height: 200px; position: relative;">
+                <canvas id="budgetMiniChart"></canvas>
+            </div>
+            <div class="mt-4 text-center">
+                <div class="h4 fw-bold mb-0">100%</div>
+                <div class="small text-muted">Anggaran Telah Terserap</div>
+            </div>
+        </div>
+
+        <!-- Kontak Pengaduan -->
+        <div class="card p-4 border-0 shadow-sm bg-primary text-white">
+            <h6 class="fw-bold mb-2">Ada Masukan/Keluhan?</h6>
+            <p class="small mb-3">Sampaikan kepada kami jika Anda menemukan ketidaksesuaian pada proyek ini di lapangan.</p>
+            <button class="btn btn-light btn-sm w-100 fw-bold"><i class="bi bi-chat-dots me-2"></i> Kirim Pengaduan</button>
+        </div>
     </div>
 </div>
         </div>
@@ -394,6 +409,37 @@
             document.getElementById('sidebar').classList.toggle('show');
         });
     </script>
+    <script>
+    // Initialize Mini Project Map
+    var pmap = L.map('project-map').setView([-8.055, 111.845], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(pmap);
+    L.marker([-8.055, 111.845]).addTo(pmap)
+        .bindPopup('<b>Lokasi Rabat Beton RW 04</b>')
+        .openPopup();
 
+    // Budget Mini Chart (Doughnut)
+    const ctxMini = document.getElementById('budgetMiniChart').getContext('2d');
+    new Chart(ctxMini, {
+        type: 'doughnut',
+        data: {
+            labels: ['Realisasi', 'Sisa'],
+            datasets: [{
+                data: [150000000, 0],
+                backgroundColor: ['#0d6efd', '#e9ecef'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '80%',
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>
 </body>
 </html>

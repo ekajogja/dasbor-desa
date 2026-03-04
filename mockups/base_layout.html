@@ -39,6 +39,7 @@
             border-right: 1px solid #dee2e6;
             transition: all 0.3s;
             z-index: 1000;
+            overflow-y: auto;
         }
 
         #main-content {
@@ -49,16 +50,19 @@
 
         .nav-link {
             color: #495057;
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.5rem;
             display: flex;
             align-items: center;
             border-radius: 0;
-            margin: 0.2rem 0;
+            margin: 0.1rem 0;
+            font-size: 0.9rem;
         }
 
         .nav-link i {
             margin-right: 12px;
             font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
         }
 
         .nav-link:hover, .nav-link.active {
@@ -72,8 +76,8 @@
         }
 
         .sidebar-heading {
-            padding: 1.5rem 1.5rem 0.5rem;
-            font-size: 0.75rem;
+            padding: 1.2rem 1.5rem 0.4rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
             color: #6c757d;
@@ -129,7 +133,7 @@
             <span class="fs-5 fw-bold text-dark">Dasbor Desa</span>
         </div>
 
-        <nav class="mt-2">
+        <nav class="mt-2 pb-4">
             <!-- Publik -->
             <div class="sidebar-heading">Publik</div>
             <a href="dashboard_publik.html" class="nav-link {% if active_page == 'dashboard_publik' %}active{% endif %}">
@@ -145,18 +149,73 @@
             <hr class="mx-3 my-2">
 
             <!-- Admin Menu (Hanya tampil jika login) -->
-            <div class="sidebar-heading">Menu Internal</div>
+            <div class="sidebar-heading">Internal</div>
             <a href="dashboard_privat.html" class="nav-link {% if active_page == 'dashboard_privat' %}active{% endif %}">
                 <i class="bi bi-cpu"></i> Dashboard Internal
             </a>
-            <a href="tabel_data.html" class="nav-link {% if active_page == 'tabel_data' %}active{% endif %}">
-                <i class="bi bi-layers"></i> Kelola Data
+
+            <div class="sidebar-heading">Data Master</div>
+            <a href="tabel_data.html" class="nav-link {% if active_page == 'data_penduduk' %}active{% endif %}">
+                <i class="bi bi-people"></i> Statistik Penduduk
             </a>
-            <a href="form_input.html" class="nav-link {% if active_page == 'form_input' %}active{% endif %}">
-                <i class="bi bi-plus-square"></i> Input Baru
+            <a href="tabel_data.html" class="nav-link {% if active_page == 'data_apbdes' %}active{% endif %}">
+                <i class="bi bi-journal-text"></i> APBDes
             </a>
-            <a href="admin_user.html" class="nav-link {% if active_page == 'admin_user' %}active{% endif %}">
-                <i class="bi bi-person-badge"></i> Petugas & Role
+            <a href="tabel_data.html" class="nav-link {% if active_page == 'data_kegiatan' %}active{% endif %}">
+                <i class="bi bi-activity"></i> Kegiatan
+            </a>
+            <a href="tabel_data.html" class="nav-link {% if active_page == 'data_layanan' %}active{% endif %}">
+                <i class="bi bi-headset"></i> Layanan
+            </a>
+            <a href="tabel_data.html" class="nav-link {% if active_page == 'data_aset' %}active{% endif %}">
+                <i class="bi bi-box-seam"></i> Aset
+            </a>
+
+            <div class="sidebar-heading">Input Data</div>
+            <a href="form_input.html" class="nav-link {% if active_page == 'input_apbdes' %}active{% endif %}">
+                <i class="bi bi-file-earmark-arrow-up"></i> Impor APBDes (Excel)
+            </a>
+            <a href="form_input.html" class="nav-link {% if active_page == 'input_layanan' %}active{% endif %}">
+                <i class="bi bi-filetype-csv"></i> Impor Layanan (CSV)
+            </a>
+            <a href="form_input.html" class="nav-link {% if active_page == 'input_kegiatan' %}active{% endif %}">
+                <i class="bi bi-plus-square"></i> Input Kegiatan (Form)
+            </a>
+            <a href="form_input.html" class="nav-link {% if active_page == 'input_transaksi' %}active{% endif %}">
+                <i class="bi bi-cash-stack"></i> Input Transaksi (Form)
+            </a>
+
+            <div class="sidebar-heading">Laporan</div>
+            <a href="laporan.html" class="nav-link {% if active_page == 'laporan_lpj' %}active{% endif %}">
+                <i class="bi bi-file-earmark-word"></i> Ekspor LPJ (Word)
+            </a>
+            <a href="laporan.html" class="nav-link {% if active_page == 'laporan_realisasi' %}active{% endif %}">
+                <i class="bi bi-file-earmark-excel"></i> Ekspor Realisasi (Excel)
+            </a>
+            <a href="laporan.html" class="nav-link {% if active_page == 'laporan_sipede' %}active{% endif %}">
+                <i class="bi bi-file-earmark-spreadsheet"></i> Format SIPEDE (Excel)
+            </a>
+
+            <div class="sidebar-heading">Analitik</div>
+            <a href="analitik.html" class="nav-link {% if active_page == 'analitik_cashflow' %}active{% endif %}">
+                <i class="bi bi-graph-up-arrow"></i> Cashflow Analysis
+            </a>
+            <a href="analitik.html" class="nav-link {% if active_page == 'analitik_anomali' %}active{% endif %}">
+                <i class="bi bi-shield-exclamation"></i> Deteksi Anomali
+            </a>
+            <a href="analitik.html" class="nav-link {% if active_page == 'analitik_indikator' %}active{% endif %}">
+                <i class="bi bi-sliders"></i> Indikator Trend
+            </a>
+
+            <div class="sidebar-heading">Administrasi</div>
+            <a href="admin_user.html" class="nav-link {% if active_page == 'admin_users' %}active{% endif %}">
+                <i class="bi bi-person-gear"></i> Manajemen User
+            </a>
+            <a href="tabel_data.html" class="nav-link {% if active_page == 'admin_audit' %}active{% endif %}">
+                <i class="bi bi-clock-history"></i> Audit Log
+            </a>
+            <a href="pengaturan.html" class="nav-link {% if active_page == 'admin_settings' %}active{% endif %}">
+                <i class="bi bi-gear"></i> Pengaturan Sistem
             </a>
 
             <div class="sidebar-heading">Sistem</div>

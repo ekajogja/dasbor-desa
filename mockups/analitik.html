@@ -1,0 +1,205 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Analitik Kinerja - Dasbor Desa{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="dashboard_privat.html" class="text-decoration-none">Dashboard</a></li>
+<li class="breadcrumb-item active" aria-current="page">Analitik</li>
+{% endblock %}
+
+{% block content %}
+<h1 class="h3 fw-bold mb-4">Analitik Kinerja & Deteksi Anomali</h1>
+
+<div class="row g-4 mb-4">
+    <!-- Cashflow Analysis -->
+    <div class="col-lg-8">
+        <div class="card p-4 h-100 border-0 shadow-sm">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0">Analisis Cashflow Bulanan (APBDes)</h5>
+                <select class="form-select form-select-sm w-auto">
+                    <option>Tahun 2024</option>
+                    <option>Tahun 2023</option>
+                </select>
+            </div>
+            <div style="height: 350px; position: relative;">
+                <canvas id="cashflowChart"></canvas>
+            </div>
+            <div class="mt-3 small text-muted">
+                <i class="bi bi-info-circle me-1"></i> Perbandingan antara realisasi pengeluaran bulanan (Bar) dengan target pagu anggaran (Line).
+            </div>
+        </div>
+    </div>
+
+    <!-- Deteksi Anomali -->
+    <div class="col-lg-4">
+        <div class="card p-4 h-100 border-0 shadow-sm bg-light border-start border-danger border-4">
+            <h5 class="fw-bold mb-4">Deteksi Anomali Terbaru</h5>
+            <div class="alert alert-danger py-2 small border-0 mb-3 shadow-sm">
+                <i class="bi bi-exclamation-octagon-fill me-1"></i> Realisasi melebihi pagu di Bidang Ekonomi.
+            </div>
+            <div class="alert alert-warning py-2 small border-0 mb-3 shadow-sm">
+                <i class="bi bi-exclamation-triangle-fill me-1"></i> Lonjakan transaksi (45% dlm 1 mgg) di Kegiatan Rabat Beton.
+            </div>
+            <div class="alert alert-info py-2 small border-0 mb-3 shadow-sm">
+                <i class="bi bi-info-circle-fill me-1"></i> 5 Layanan Surat SKU terlambat (SLA > 1 Hari).
+            </div>
+            <div class="mt-auto pt-3 border-top text-center">
+                <button class="btn btn-sm btn-outline-danger fw-bold w-100">Review Semua Anomali</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mb-4">
+    <!-- Indikator Trend (Radar Chart) -->
+    <div class="col-lg-6">
+        <div class="card p-4 h-100 border-0 shadow-sm">
+            <h5 class="fw-bold mb-4">Tren Indikator Visioner (Bulan ke Bulan)</h5>
+            <div style="height: 350px; position: relative;">
+                <canvas id="indicatorTrendChart"></canvas>
+            </div>
+            <div class="mt-3 small text-muted text-center px-4">
+                <i class="bi bi-info-circle me-1"></i> Perbandingan capaian 4 Indeks utama bulan ini (Primary) dengan bulan lalu (Shadow).
+            </div>
+        </div>
+    </div>
+
+    <!-- Efficiency Ranking (Bar Chart) -->
+    <div class="col-lg-6">
+        <div class="card p-4 h-100 border-0 shadow-sm">
+            <h5 class="fw-bold mb-4">Ranking Efisiensi Anggaran (Sisa Dana)</h5>
+            <div style="height: 350px; position: relative;">
+                <canvas id="efficiencyRankingChart"></canvas>
+            </div>
+            <div class="mt-3 small text-muted">
+                <i class="bi bi-info-circle me-1"></i> Persentase sisa dana untuk kegiatan yang sudah selesai 100% secara fisik.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4 border-0 shadow-sm">
+    <h5 class="fw-bold mb-4">Tabel Anomali Transaksi (History)</h5>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle small">
+            <thead class="table-light">
+                <tr>
+                    <th>Waktu Deteksi</th>
+                    <th>Jenis Anomali</th>
+                    <th>Keterangan Sistem</th>
+                    <th>Status</th>
+                    <th>Tindakan Lanjut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>24 Mei 2024 14:00</td>
+                    <td>Lonjakan Realisasi</td>
+                    <td>Transaksi <code>#TRX-089</code> melonjak drastis tanpa update progres fisik yang sebanding.</td>
+                    <td><span class="badge bg-danger">Butuh Review</span></td>
+                    <td><button class="btn btn-sm btn-light border px-2">Lihat Detail</button></td>
+                </tr>
+                <tr>
+                    <td>20 Mei 2024 10:45</td>
+                    <td>Pelanggaran SLA Layanan</td>
+                    <td>Permohonan SKU <code>#REG-002</code> terlambat diproses (Target: 1 Hari, Aktual: 3 Hari).</td>
+                    <td><span class="badge bg-warning text-dark">Diterima</span></td>
+                    <td><button class="btn btn-sm btn-light border px-2">Abaikan</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Cashflow Analysis Chart
+    const ctxCashflow = document.getElementById('cashflowChart').getContext('2d');
+    new Chart(ctxCashflow, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+            datasets: [
+                {
+                    label: 'Target Pagu Bulanan',
+                    data: [300, 300, 300, 300, 300, 300],
+                    borderColor: 'rgba(200, 200, 200, 1)',
+                    borderWidth: 2,
+                    type: 'line',
+                    pointRadius: 0
+                },
+                {
+                    label: 'Realisasi Kumulatif (Juta Rp)',
+                    data: [120, 350, 680, 1100, 1850, 2437],
+                    backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                    type: 'bar'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+
+    // Indicator Trend Chart (Radar)
+    const ctxIndicator = document.getElementById('indicatorTrendChart').getContext('2d');
+    new Chart(ctxIndicator, {
+        type: 'radar',
+        data: {
+            labels: ['Pelayanan', 'Transparansi', 'Partisipasi', 'Ketahanan'],
+            datasets: [
+                {
+                    label: 'Bulan Lalu (April)',
+                    data: [82, 88, 75, 78],
+                    fill: true,
+                    backgroundColor: 'rgba(200, 200, 200, 0.2)',
+                    borderColor: 'rgba(200, 200, 200, 1)',
+                    pointRadius: 0
+                },
+                {
+                    label: 'Bulan Ini (Mei)',
+                    data: [85, 90, 75, 80],
+                    fill: true,
+                    backgroundColor: 'rgba(25, 135, 84, 0.2)',
+                    borderColor: 'rgb(25, 135, 84)',
+                    pointBackgroundColor: 'rgb(25, 135, 84)',
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: { suggestedMin: 0, suggestedMax: 100 }
+            }
+        }
+    });
+
+    // Efficiency Ranking Chart (Bar)
+    const ctxEfficiency = document.getElementById('efficiencyRankingChart').getContext('2d');
+    new Chart(ctxEfficiency, {
+        type: 'bar',
+        data: {
+            labels: ['Rabat Beton RW 04', 'Drainase Dusun Ndasri', 'Paving Makam', 'Gapura Desa'],
+            datasets: [{
+                label: 'Sisa Anggaran (%)',
+                data: [15, 8, 2, 22],
+                backgroundColor: 'rgba(13, 110, 253, 0.7)',
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>
+{% endblock %}

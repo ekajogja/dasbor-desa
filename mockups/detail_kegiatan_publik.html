@@ -1,0 +1,171 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Detail Kegiatan - Dasbor Desa{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="dashboard_publik.html" class="text-decoration-none">Dashboard Publik</a></li>
+<li class="breadcrumb-item active" aria-current="page">Detail Kegiatan</li>
+{% endblock %}
+
+{% block content %}
+<div class="row g-4 mb-4">
+    <!-- Konten Utama Detail (Publik) -->
+    <div class="col-lg-8">
+        <div class="card p-4 border-0 shadow-sm mb-4">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1">Pembangunan Jalan Rabat Beton RW 04</h2>
+                    <span class="badge bg-success px-3 py-2 mb-2">Selesai (100%)</span>
+                    <p class="text-muted small mb-0"><i class="bi bi-geo-alt me-1"></i> Dusun Krajan, RT 012 / RW 004, Desa Tiudan</p>
+                </div>
+                <div class="text-end text-muted small">
+                    ID Proyek: #KG-2024-001<br>
+                    Tahun Anggaran: 2024
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Pagu Anggaran</label>
+                    <span class="fw-bold h4 text-primary">Rp 150.000.000</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Sumber Dana</label>
+                    <span class="fw-bold h5">Dana Desa (DD) Tahap 1</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Masa Pelaksanaan</label>
+                    <span class="fw-bold">12 Jan 2024 - 15 Mei 2024</span>
+                </div>
+                <div class="col-md-6">
+                    <label class="text-muted small d-block mb-1 text-uppercase fw-bold">Pelaksana Kegiatan</label>
+                    <span class="fw-bold">Kasi Kesejahteraan (TPK Desa)</span>
+                </div>
+            </div>
+
+            <h5 class="fw-bold mb-3">Deskripsi Proyek</h5>
+            <p class="text-muted mb-4">Pembangunan jalan rabat beton sepanjang 250 meter dengan lebar 3 meter dan ketebalan 15 cm. Menggunakan material cor K-225 sesuai standar Bina Marga. Kegiatan ini bertujuan memperlancar akses transportasi warga di lingkungan padat penduduk RW 04.</p>
+
+            <h5 class="fw-bold mb-4">Timeline Progres & Dokumentasi</h5>
+            <div class="timeline-wrapper">
+                <div class="d-flex mb-5">
+                    <div class="me-4 text-center" style="width: 80px;">
+                        <span class="badge bg-primary rounded-pill mb-2">Mei 24</span>
+                        <div class="h3 fw-bold">100%</div>
+                    </div>
+                    <div class="flex-grow-1 card p-3 bg-light border-0 shadow-none">
+                        <h6 class="fw-bold mb-3">Pekerjaan Selesai (Serah Terima)</h6>
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1590060417641-f28325a91931?auto=format&fit=crop&q=80&w=400" alt="Foto Selesai" style="object-fit: cover;">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=400" alt="Foto Lapangan" style="object-fit: cover;">
+                                </div>
+                            </div>
+                        </div>
+                        <p class="small text-muted mb-0">Pekerjaan fisik telah selesai 100% dan telah diverifikasi oleh tim pelaksana teknis desa (TPK).</p>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-5 opacity-75">
+                    <div class="me-4 text-center" style="width: 80px;">
+                        <span class="badge bg-secondary rounded-pill mb-2">Mar 24</span>
+                        <div class="h3 fw-bold">50%</div>
+                    </div>
+                    <div class="flex-grow-1 card p-3 bg-white border shadow-none">
+                        <h6 class="fw-bold mb-3">Tahap Pengecoran Tengah Jalan</h6>
+                        <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden mb-2" style="max-width: 200px;">
+                            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=400" alt="Foto 50%" style="object-fit: cover;">
+                        </div>
+                        <p class="small text-muted mb-0">Pengecoran sepanjang 125 meter selesai, menunggu masa pengerasan sebelum dilanjutkan.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex opacity-50">
+                    <div class="me-4 text-center" style="width: 80px;">
+                        <span class="badge bg-secondary rounded-pill mb-2">Jan 24</span>
+                        <div class="h3 fw-bold">0%</div>
+                    </div>
+                    <div class="flex-grow-1 card p-3 bg-white border shadow-none">
+                        <h6 class="fw-bold mb-3">Kondisi Nol (Awal Proyek)</h6>
+                        <div class="ratio ratio-16x9 bg-secondary rounded overflow-hidden mb-2" style="max-width: 200px;">
+                             <img src="https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&q=80&w=400" alt="Foto 0%" style="object-fit: cover;">
+                        </div>
+                        <p class="small text-muted mb-0">Lokasi jalan rusak sebelum dimulai pengerjaan rabat beton.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel Informasi Sidebar -->
+    <div class="col-lg-4">
+        <!-- Lokasi di Peta -->
+        <div class="card p-4 border-0 shadow-sm mb-4">
+            <h5 class="fw-bold mb-3">Lokasi Kegiatan</h5>
+            <div id="project-map" class="map-container rounded mb-3" style="height: 250px;"></div>
+            <p class="small text-muted mb-0">Titik Koordinat: <code>-8.055, 111.845</code></p>
+        </div>
+
+        <!-- Ringkasan Anggaran (Radar/Pie mini) -->
+        <div class="card p-4 border-0 shadow-sm mb-4">
+            <h5 class="fw-bold mb-3">Realisasi Anggaran</h5>
+            <div style="height: 200px; position: relative;">
+                <canvas id="budgetMiniChart"></canvas>
+            </div>
+            <div class="mt-4 text-center">
+                <div class="h4 fw-bold mb-0">100%</div>
+                <div class="small text-muted">Anggaran Telah Terserap</div>
+            </div>
+        </div>
+
+        <!-- Kontak Pengaduan -->
+        <div class="card p-4 border-0 shadow-sm bg-primary text-white">
+            <h6 class="fw-bold mb-2">Ada Masukan/Keluhan?</h6>
+            <p class="small mb-3">Sampaikan kepada kami jika Anda menemukan ketidaksesuaian pada proyek ini di lapangan.</p>
+            <button class="btn btn-light btn-sm w-100 fw-bold"><i class="bi bi-chat-dots me-2"></i> Kirim Pengaduan</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize Mini Project Map
+    var pmap = L.map('project-map').setView([-8.055, 111.845], 16);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(pmap);
+    L.marker([-8.055, 111.845]).addTo(pmap)
+        .bindPopup('<b>Lokasi Rabat Beton RW 04</b>')
+        .openPopup();
+
+    // Budget Mini Chart (Doughnut)
+    const ctxMini = document.getElementById('budgetMiniChart').getContext('2d');
+    new Chart(ctxMini, {
+        type: 'doughnut',
+        data: {
+            labels: ['Realisasi', 'Sisa'],
+            datasets: [{
+                data: [150000000, 0],
+                backgroundColor: ['#0d6efd', '#e9ecef'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '80%',
+            plugins: {
+                legend: { display: false }
+            }
+        }
+    });
+</script>
+{% endblock %}

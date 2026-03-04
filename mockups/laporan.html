@@ -1,0 +1,134 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Ekspor Laporan - Dasbor Desa{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="dashboard_privat.html" class="text-decoration-none">Dashboard</a></li>
+<li class="breadcrumb-item active" aria-current="page">Laporan</li>
+{% endblock %}
+
+{% block content %}
+<h1 class="h3 fw-bold mb-4">Pusat Laporan & Ekspor Dokumen</h1>
+
+<div class="row g-4 mb-4">
+    <!-- Laporan LPJ (Word) -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm p-4 text-center">
+            <div class="text-primary fs-1 mb-3">
+                <i class="bi bi-file-earmark-word"></i>
+            </div>
+            <h5 class="fw-bold">LPJ Kepala Desa</h5>
+            <p class="small text-muted mb-4">Generate dokumen Word Laporan Pertanggungjawaban Kepala Desa otomatis dari data APBDes dan Kegiatan.</p>
+            <div class="mb-3">
+                <select class="form-select form-select-sm">
+                    <option>Tahun Anggaran 2024</option>
+                    <option>Tahun Anggaran 2023</option>
+                </select>
+            </div>
+            <button class="btn btn-primary btn-sm fw-bold w-100 mt-auto"><i class="bi bi-download me-2"></i> Ekspor ke Word</button>
+        </div>
+    </div>
+
+    <!-- Laporan Realisasi (Excel) -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm p-4 text-center">
+            <div class="text-success fs-1 mb-3">
+                <i class="bi bi-file-earmark-excel"></i>
+            </div>
+            <h5 class="fw-bold">Realisasi APBDes</h5>
+            <p class="small text-muted mb-4">Laporan realisasi anggaran (Triwulan/Semester) dalam format Excel yang rapi dan siap cetak.</p>
+            <div class="row g-2 mb-3">
+                <div class="col-6">
+                    <select class="form-select form-select-sm">
+                        <option>2024</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <select class="form-select form-select-sm">
+                        <option>Triwulan 1</option>
+                        <option>Triwulan 2</option>
+                        <option>Semester 1</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-success btn-sm fw-bold w-100 mt-auto"><i class="bi bi-download me-2"></i> Ekspor ke Excel</button>
+        </div>
+    </div>
+
+    <!-- Format SIPEDE (Excel) -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm p-4 text-center border-start border-warning border-4">
+            <div class="text-warning fs-1 mb-3">
+                <i class="bi bi-file-earmark-spreadsheet"></i>
+            </div>
+            <h5 class="fw-bold">Format SIPEDE</h5>
+            <p class="small text-muted mb-4">Ekspor data realisasi APBDes dalam format Excel khusus untuk diunggah ke Sistem Pemerintahan Desa (SIPEDE).</p>
+            <div class="mb-3">
+                <select class="form-select form-select-sm">
+                    <option>Pilih Periode Laporan</option>
+                </select>
+            </div>
+            <button class="btn btn-outline-warning btn-sm fw-bold w-100 mt-auto text-dark"><i class="bi bi-download me-2"></i> Ekspor ke SIPEDE</button>
+        </div>
+    </div>
+
+    <!-- Laporan SDGs Desa -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm p-4 text-center border-start border-info border-4">
+            <div class="text-info fs-1 mb-3">
+                <i class="bi bi-globe-asia-australia"></i>
+            </div>
+            <h5 class="fw-bold">Laporan SDGs Desa</h5>
+            <p class="small text-muted mb-4">Capaian indikator SDGs Desa berdasarkan data agregat penduduk dan pembangunan yang tersedia.</p>
+            <div class="mb-3">
+                <select class="form-select form-select-sm">
+                    <option>Semua Indikator SDGs</option>
+                    <option>Desa Tanpa Kemiskinan</option>
+                    <option>Desa Tanpa Kelaparan</option>
+                </select>
+            </div>
+            <button class="btn btn-info btn-sm fw-bold w-100 mt-auto text-white"><i class="bi bi-download me-2"></i> Ekspor Capaian SDGs</button>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4 border-0 shadow-sm">
+    <h5 class="fw-bold mb-4">Riwayat Ekspor Laporan Terakhir</h5>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle small">
+            <thead class="table-light">
+                <tr>
+                    <th>Waktu Ekspor</th>
+                    <th>Nama Laporan</th>
+                    <th>Periode</th>
+                    <th>Petugas</th>
+                    <th>File Terakhir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>24 Mei 2024 10:15</td>
+                    <td>Realisasi APBDes (Triwulan 1)</td>
+                    <td>2024</td>
+                    <td>siti_operator</td>
+                    <td><a href="#" class="text-decoration-none"><i class="bi bi-file-excel text-success me-1"></i> realisasi_2024_t1.xlsx</a></td>
+                </tr>
+                <tr>
+                    <td>20 Mei 2024 09:30</td>
+                    <td>LPJ Kepala Desa</td>
+                    <td>2023</td>
+                    <td>budi_admin</td>
+                    <td><a href="#" class="text-decoration-none"><i class="bi bi-file-word text-primary me-1"></i> lpj_tiudan_2023.docx</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="alert alert-info mt-4 py-3 small border-0 d-flex align-items-center shadow-sm">
+    <i class="bi bi-info-circle-fill me-3 fs-4"></i>
+    <div>
+        <strong>Informasi Template:</strong> Semua format laporan di atas mengikuti standar terbaru dari Permendagri dan Kementerian Desa. Pastikan data di <strong>APBDes</strong> dan <strong>Transaksi</strong> telah lengkap sebelum melakukan ekspor.
+    </div>
+</div>
+{% endblock %}

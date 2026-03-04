@@ -1,510 +1,293 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Privat - Dasbor Desa</title>
+{% extends "base_layout.html" %}
 
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+{% block title %}Dashboard Privat - Administrasi Desa{% endblock %}
 
-    <style>
-        :root {
-            --sidebar-width: 260px;
-            --primary-color: #0d6efd;
-            --bg-light: #f8f9fa;
-        }
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">Dashboard Privat</li>
+{% endblock %}
 
-        body {
-            background-color: var(--bg-light);
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        }
+{% block content %}
+<div class="alert alert-info d-flex align-items-center border-0 shadow-sm mb-4" role="alert">
+    <i class="bi bi-info-circle-fill me-2 fs-5"></i>
+    <div>
+        Selamat Datang, <strong>Admin Desa Tiudan</strong>. Sistem mendeteksi <strong>18 permohonan layanan</strong> baru yang perlu segera diproses.
+    </div>
+</div>
 
-        /* Sidebar Styling */
-        #sidebar {
-            width: var(--sidebar-width);
-            min-height: 100vh;
-            position: fixed;
-            left: 0;
-            top: 0;
-            background-color: white;
-            border-right: 1px solid #dee2e6;
-            transition: all 0.3s;
-            z-index: 1000;
-        }
-
-        #main-content {
-            margin-left: var(--sidebar-width);
-            min-height: 100vh;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .nav-link {
-            color: #495057;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            align-items: center;
-            border-radius: 0;
-            margin: 0.2rem 0;
-            text-decoration: none;
-        }
-
-        .nav-link i {
-            margin-right: 12px;
-            font-size: 1.1rem;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            background-color: rgba(13, 110, 253, 0.08);
-            color: var(--primary-color);
-        }
-
-        .nav-link.active {
-            border-left: 4px solid var(--primary-color);
-            font-weight: 600;
-        }
-
-        .sidebar-heading {
-            padding: 1.5rem 1.5rem 0.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #6c757d;
-            letter-spacing: 0.5px;
-        }
-
-        /* Top Navbar Styling */
-        .navbar-custom {
-            background-color: white;
-            border-bottom: 1px solid #dee2e6;
-            padding: 0.75rem 1.5rem;
-        }
-
-        /* Content Padding */
-        .content-body {
-            padding: 1.5rem;
-            flex: 1;
-        }
-
-        /* Responsive */
-        @media (max-width: 991.98px) {
-            #sidebar {
-                margin-left: calc(-1 * var(--sidebar-width));
-            }
-            #sidebar.show {
-                margin-left: 0;
-            }
-            #main-content {
-                margin-left: 0;
-            }
-        }
-
-        .card {
-            border: none;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            border-radius: 0.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .action-card {
-            transition: transform 0.2s ease;
-        }
-        .action-card:hover {
-            transform: translateY(-5px);
-            background-color: #f8f9fa;
-        }
-
-        .heatmap-cell {
-            height: 30px;
-            border: 1px solid #fff;
-            border-radius: 4px;
-        }
-        .level-1 { background-color: #e3f2fd; }
-        .level-2 { background-color: #90caf9; }
-        .level-3 { background-color: #42a5f5; }
-        .level-4 { background-color: #1e88e5; }
-        .level-5 { background-color: #1565c0; }
-    </style>
-</head>
-<body>
-
-    <!-- Sidebar -->
-    <aside id="sidebar">
-        <div class="d-flex align-items-center p-4 border-bottom">
-            <i class="bi bi-house-door-fill text-primary fs-4 me-2"></i>
-            <span class="fs-5 fw-bold text-dark">Dasbor Desa</span>
+<div class="row g-4 mb-4">
+    <!-- Ringkasan Operasional -->
+    <div class="col-lg-8">
+        <h5 class="fw-bold mb-3">Monitoring Operasional & Keuangan</h5>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="card p-4 border-start border-primary border-4 h-100 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="text-muted small">Layanan Pending</div>
+                            <div class="h2 fw-bold mb-0">18</div>
+                        </div>
+                        <div class="bg-primary bg-opacity-10 p-3 rounded text-primary">
+                            <i class="bi bi-file-earmark-text fs-3"></i>
+                        </div>
+                    </div>
+                    <a href="tabel_data.html" class="text-primary small text-decoration-none mt-3">Selesaikan Layanan <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4 border-start border-warning border-4 h-100 shadow-sm">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="text-muted small">Kegiatan Perlu Update</div>
+                            <div class="h2 fw-bold mb-0">4</div>
+                        </div>
+                        <div class="bg-warning bg-opacity-10 p-3 rounded text-warning">
+                            <i class="bi bi-exclamation-triangle fs-3"></i>
+                        </div>
+                    </div>
+                    <a href="form_input.html" class="text-warning small text-decoration-none mt-3">Lengkapi Laporan Progres <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
         </div>
 
-        <nav class="mt-2">
-            <!-- Publik -->
-            <div class="sidebar-heading">Publik</div>
-            <a href="dashboard_publik.html" class="nav-link">
-                <i class="bi bi-speedometer2"></i> Beranda Publik
-            </a>
-
-            <!-- Terbatas/Login -->
-            <div class="sidebar-heading">Akses Terbatas</div>
-            <a href="login.html" class="nav-link">
-                <i class="bi bi-box-arrow-in-right"></i> Login Petugas
-            </a>
-
-            <hr class="mx-3 my-2">
-
-            <!-- Admin Menu (Hanya tampil jika login) -->
-            <div class="sidebar-heading">Menu Internal</div>
-            <a href="dashboard_privat.html" class="nav-link active">
-                <i class="bi bi-cpu"></i> Dashboard Internal
-            </a>
-            <a href="tabel_data.html" class="nav-link">
-                <i class="bi bi-layers"></i> Kelola Data
-            </a>
-            <a href="form_input.html" class="nav-link">
-                <i class="bi bi-plus-square"></i> Input Baru
-            </a>
-            <a href="admin_user.html" class="nav-link">
-                <i class="bi bi-person-badge"></i> Petugas & Role
-            </a>
-
-            <div class="sidebar-heading">Sistem</div>
-            <a href="404.html" class="nav-link">
-                <i class="bi bi-question-circle"></i> Bantuan
-            </a>
-            <a href="../index.html" class="nav-link">
-                <i class="bi bi-arrow-left-circle"></i> Kembali ke Landing
-            </a>
-        </nav>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main id="main-content">
-        <!-- Navbar Atas -->
-        <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
-            <div class="container-fluid">
-                <button class="btn btn-outline-secondary d-lg-none me-2" id="sidebarToggle">
-                    <i class="bi bi-list"></i>
-                </button>
-
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="dashboard_publik.html" class="text-decoration-none">Dasbor Desa</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard Privat</li>
-                    </ol>
-                </nav>
-
-                <div class="ms-auto d-flex align-items-center">
-                    <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-dark" id="userDropdown" data-bs-toggle="dropdown">
-                            <div class="avatar-sm me-2">
-                                <i class="bi bi-person-circle fs-4 text-primary"></i>
-                            </div>
-                            <span class="d-none d-sm-inline">Admin Desa</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0">
-                            <li><a class="dropdown-item" href="profil.html"><i class="bi bi-person me-2"></i> Profil</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i> Keluar</a></li>
-                        </ul>
-                    </div>
+        <div class="card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold mb-0">Analisis Kinerja & Deviasi Anggaran</h5>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filter Tahun: 2024</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">2024</a></li>
+                        <li><a class="dropdown-item" href="#">2023</a></li>
+                    </ul>
                 </div>
             </div>
-        </nav>
-
-        <!-- Page Content Body -->
-        <div class="content-body">
-            <div class="alert alert-info d-flex align-items-center border-0 shadow-sm mb-4" role="alert">
-                <i class="bi bi-info-circle-fill me-2 fs-5"></i>
-                <div>
-                    Halo, <strong>Admin Desa Tiudan</strong>. Anda masuk sebagai Administrator Utama.
+            <div class="row g-4">
+                <!-- Radar Chart: Deviasi Anggaran -->
+                <div class="col-md-6">
+                    <h6 class="small fw-bold text-center mb-3">Radar Deviasi Anggaran per Bidang</h6>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="deviationRadarChart"></canvas>
+                    </div>
+                    <p class="text-center small text-muted mt-2 px-3">Melihat bidang mana yang realisasinya paling menjauh dari pagu awal.</p>
+                </div>
+                <!-- Bar Chart: Ranking Efisiensi Kegiatan -->
+                <div class="col-md-6">
+                    <h6 class="small fw-bold text-center mb-3">Peringkat Efisiensi Realisasi (%)</h6>
+                    <div style="height: 300px; position: relative;">
+                        <canvas id="efficiencyBarChart"></canvas>
+                    </div>
+                    <p class="text-center small text-muted mt-2 px-3">Menunjukkan persentase sisa anggaran pada kegiatan yang sudah 100% fisik.</p>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-8">
-                    <h5 class="fw-bold mb-3">Ringkasan Operasional</h5>
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="card p-4 border-start border-primary border-4 h-100">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="text-muted small">Permohonan Layanan Baru</div>
-                                        <div class="h3 fw-bold">18</div>
-                                    </div>
-                                    <div class="text-primary fs-1 opacity-25">
-                                        <i class="bi bi-file-earmark-text"></i>
-                                    </div>
-                                </div>
-                                <a href="tabel_data.html" class="text-primary small text-decoration-none mt-auto pt-3">Lihat Semua Antrean <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card p-4 border-start border-warning border-4 h-100">
-                                <div class="d-flex justify-content-between">
-                                    <div>
-                                        <div class="text-muted small">Kegiatan Perlu Pelaporan</div>
-                                        <div class="h3 fw-bold">4</div>
-                                    </div>
-                                    <div class="text-warning fs-1 opacity-25">
-                                        <i class="bi bi-exclamation-triangle"></i>
-                                    </div>
-                                </div>
-                                <a href="form_input.html" class="text-warning small text-decoration-none mt-auto pt-3">Update Laporan Sekarang <i class="bi bi-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mt-4 p-4">
-                        <h5 class="fw-bold mb-4">Analitik Keuangan & Kegiatan</h5>
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <h6 class="small fw-bold">Cashflow Bulanan (APBDes)</h6>
-                                <div style="height: 250px; position: relative;">
-                                    <canvas id="cashflowChart"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                                <h6 class="small fw-bold">Deviasi Anggaran per Kegiatan</h6>
-                                <div style="height: 250px; position: relative;">
-                                    <canvas id="deviationChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6 class="small fw-bold">Ranking Progres Kegiatan</h6>
-                                <div style="height: 250px; position: relative;">
-                                    <canvas id="rankingChart"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-center d-flex flex-column justify-content-center border-start">
-                                <h6 class="small fw-bold">Deteksi Anomali Realisasi</h6>
-                                <div class="alert alert-warning py-2 small mb-0">
-                                    <i class="bi bi-exclamation-circle-fill me-1"></i> Lonjakan realisasi di Kegiatan "Rehabilitasi Posyandu" (>40% dlm 1 minggu).
-                                </div>
-                                <div class="alert alert-info py-2 small mt-2 mb-0">
-                                    Sistem mendeteksi 1 transaksi tanpa dokumen pendukung di Bidang Ekonomi.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mt-4 p-4">
-                        <h5 class="fw-bold mb-4">Aksi Cepat</h5>
-                        <div class="row g-3">
-                            <div class="col-md-4">
-                                <a href="form_input.html" class="text-decoration-none">
-                                    <div class="card p-3 text-center action-card">
-                                        <i class="bi bi-person-plus fs-2 text-primary mb-2"></i>
-                                        <div class="small fw-bold text-dark">Data Penduduk</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="form_input.html" class="text-decoration-none">
-                                    <div class="card p-3 text-center action-card">
-                                        <i class="bi bi-cash-stack fs-2 text-success mb-2"></i>
-                                        <div class="small fw-bold text-dark">Input Realisasi</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="admin_user.html" class="text-decoration-none">
-                                    <div class="card p-3 text-center action-card">
-                                        <i class="bi bi-shield-lock fs-2 text-danger mb-2"></i>
-                                        <div class="small fw-bold text-dark">Kelola Akses</div>
-                                    </div>
-                                </a>
-                            </div>
+        <div class="card p-4">
+            <h5 class="fw-bold mb-4">Deteksi Anomali & Peringatan Dini</h5>
+            <div class="row g-3">
+                <div class="col-12">
+                    <div class="alert alert-warning border-0 shadow-none d-flex mb-2">
+                        <i class="bi bi-exclamation-octagon-fill me-3 fs-4"></i>
+                        <div>
+                            <div class="fw-bold">Lonjakan Realisasi Terdeteksi</div>
+                            <div class="small">Kegiatan "Rehabilitasi Posyandu Melati" mengalami lonjakan realisasi 45% dalam 7 hari terakhir tanpa update foto progres fisik yang setara.</div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4">
-                    <h5 class="fw-bold mb-3">Analitik Layanan</h5>
-                    <div class="card p-3 mb-4">
-                        <h6 class="small fw-bold mb-3">Distribusi Waktu Penyelesaian</h6>
-                        <div style="height: 200px; position: relative;">
-                            <canvas id="serviceDistributionChart"></canvas>
+                <div class="col-12">
+                    <div class="alert alert-danger border-0 shadow-none d-flex mb-2">
+                        <i class="bi bi-file-earmark-excel-fill me-3 fs-4"></i>
+                        <div>
+                            <div class="fw-bold">Dokumen Transaksi Hilang</div>
+                            <div class="small">Sistem mendeteksi 2 transaksi realisasi (Total Rp 12.500.000) di Bidang Pemberdayaan tanpa lampiran bukti dokumen SPJ.</div>
                         </div>
                     </div>
-
-                    <h5 class="fw-bold mb-3">Beban Layanan (Heatmap)</h5>
-                    <div class="card p-3 mb-4">
-                        <div class="d-flex flex-wrap gap-1">
-                            <div class="flex-fill">
-                                <div class="small text-center text-muted mb-1">Jan</div>
-                                <div class="heatmap-cell level-2"></div>
-                            </div>
-                            <div class="flex-fill">
-                                <div class="small text-center text-muted mb-1">Feb</div>
-                                <div class="heatmap-cell level-3"></div>
-                            </div>
-                            <div class="flex-fill">
-                                <div class="small text-center text-muted mb-1">Mar</div>
-                                <div class="heatmap-cell level-1"></div>
-                            </div>
-                            <div class="flex-fill">
-                                <div class="small text-center text-muted mb-1">Apr</div>
-                                <div class="heatmap-cell level-5"></div>
-                            </div>
-                            <div class="flex-fill">
-                                <div class="small text-center text-muted mb-1">Mei</div>
-                                <div class="heatmap-cell level-4"></div>
-                            </div>
-                            <div class="flex-fill">
-                                <div class="small text-center text-muted mb-1">Jun</div>
-                                <div class="heatmap-cell level-2"></div>
-                            </div>
-                        </div>
-                        <div class="mt-3 d-flex justify-content-between align-items-center">
-                            <span class="small text-muted">Rendah</span>
-                            <div class="d-flex gap-1">
-                                <div class="heatmap-cell level-1" style="width: 15px; height: 15px;"></div>
-                                <div class="heatmap-cell level-2" style="width: 15px; height: 15px;"></div>
-                                <div class="heatmap-cell level-3" style="width: 15px; height: 15px;"></div>
-                                <div class="heatmap-cell level-4" style="width: 15px; height: 15px;"></div>
-                                <div class="heatmap-cell level-5" style="width: 15px; height: 15px;"></div>
-                            </div>
-                            <span class="small text-muted">Tinggi</span>
-                        </div>
-                    </div>
-
-                    <h5 class="fw-bold mb-3">Audit Log Terbaru</h5>
-                    <div class="card p-3">
-                        <div class="list-group list-group-flush small">
-                            <div class="list-group-item px-0 py-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <span class="fw-bold">Budi (Operator)</span>
-                                    <span class="text-muted">10 mnt lalu</span>
-                                </div>
-                                <p class="mb-1 text-muted">Menambahkan data penduduk baru: Ahmad Fauzi</p>
-                            </div>
-                            <div class="list-group-item px-0 py-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <span class="fw-bold">Siti (Operator)</span>
-                                    <span class="text-muted">2 jam lalu</span>
-                                </div>
-                                <p class="mb-1 text-muted">Update status kegiatan Rabat Beton RW 04 menjadi Selesai</p>
-                            </div>
-                            <div class="list-group-item px-0 py-3">
-                                <div class="d-flex w-100 justify-content-between">
-                                    <span class="fw-bold">Admin Utama</span>
-                                    <span class="text-muted">5 jam lalu</span>
-                                </div>
-                                <p class="mb-1 text-muted">Merubah konfigurasi tampilan Dashboard Publik</p>
-                            </div>
-                        </div>
-                        <div class="text-center mt-3">
-                            <a href="#" class="btn btn-sm btn-link text-decoration-none">Lihat Semua Audit Log</a>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-info border-0 shadow-none d-flex mb-0">
+                        <i class="bi bi-clock-history me-3 fs-4"></i>
+                        <div>
+                            <div class="fw-bold">Layanan Melampaui SLA</div>
+                            <div class="small">5 permohonan "Surat Keterangan Usaha" telah melewati batas waktu standar 1 hari kerja.</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Footer Internal -->
-        <footer class="container-fluid py-3 text-center border-top mt-auto bg-white">
-            <small class="text-muted">Dasbor Desa v0.1.0 &copy; 2024. Desa Tiudan, Tulungagung.</small>
-        </footer>
-    </main>
+    <!-- Panel Samping (Analitik & Audit) -->
+    <div class="col-lg-4">
+        <h5 class="fw-bold mb-3">Analitik & Keamanan</h5>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Sidebar Toggle
-        document.getElementById('sidebarToggle')?.addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('show');
-        });
+        <!-- Heatmap Beban Layanan (Mockup menggunakan Grid) -->
+        <div class="card p-4 mb-4">
+            <h6 class="fw-bold small mb-3">Heatmap Beban Layanan (6 Bulan)</h6>
+            <div class="d-flex flex-wrap gap-1">
+                <div class="flex-fill">
+                    <div class="small text-center text-muted mb-1">Jan</div>
+                    <div class="bg-primary opacity-25 rounded" style="height: 40px;" title="Rendah"></div>
+                </div>
+                <div class="flex-fill">
+                    <div class="small text-center text-muted mb-1">Feb</div>
+                    <div class="bg-primary opacity-50 rounded" style="height: 40px;" title="Sedang"></div>
+                </div>
+                <div class="flex-fill">
+                    <div class="small text-center text-muted mb-1">Mar</div>
+                    <div class="bg-primary opacity-10 rounded" style="height: 40px;" title="Sangat Rendah"></div>
+                </div>
+                <div class="flex-fill">
+                    <div class="small text-center text-muted mb-1">Apr</div>
+                    <div class="bg-primary opacity-100 rounded" style="height: 40px;" title="Sangat Tinggi"></div>
+                </div>
+                <div class="flex-fill">
+                    <div class="small text-center text-muted mb-1">Mei</div>
+                    <div class="bg-primary opacity-75 rounded" style="height: 40px;" title="Tinggi"></div>
+                </div>
+                <div class="flex-fill">
+                    <div class="small text-center text-muted mb-1">Jun</div>
+                    <div class="bg-primary opacity-50 rounded" style="height: 40px;" title="Sedang"></div>
+                </div>
+            </div>
+            <div class="mt-3 d-flex justify-content-between align-items-center">
+                <span class="small text-muted">Rendah</span>
+                <div class="d-flex gap-1">
+                    <div class="bg-primary opacity-10 rounded" style="width: 12px; height: 12px;"></div>
+                    <div class="bg-primary opacity-25 rounded" style="width: 12px; height: 12px;"></div>
+                    <div class="bg-primary opacity-50 rounded" style="width: 12px; height: 12px;"></div>
+                    <div class="bg-primary opacity-75 rounded" style="width: 12px; height: 12px;"></div>
+                    <div class="bg-primary opacity-100 rounded" style="width: 12px; height: 12px;"></div>
+                </div>
+                <span class="small text-muted">Tinggi</span>
+            </div>
+        </div>
 
-        // Cashflow Chart
-        const ctxCashflow = document.getElementById('cashflowChart').getContext('2d');
-        new Chart(ctxCashflow, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
-                datasets: [{
-                    label: 'Pagu (Target)',
-                    data: [300, 300, 300, 300, 300, 300],
-                    backgroundColor: 'rgba(200, 200, 200, 0.2)',
-                    borderColor: 'rgba(200, 200, 200, 1)',
-                    borderWidth: 1,
-                    type: 'line'
-                }, {
-                    label: 'Realisasi Kumulatif',
-                    data: [120, 350, 680, 1100, 1850, 2400],
-                    backgroundColor: 'rgba(13, 110, 253, 0.7)',
-                    type: 'bar'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { position: 'bottom' }
+        <!-- Audit Log Terbaru -->
+        <div class="card p-4 mb-4">
+            <h6 class="fw-bold small mb-3">Audit Log Sistem Terbaru</h6>
+            <div class="list-group list-group-flush">
+                <div class="list-group-item px-0 py-3 border-0 border-bottom">
+                    <div class="d-flex w-100 justify-content-between">
+                        <span class="fw-bold small text-primary">siti_operator</span>
+                        <span class="text-muted" style="font-size: 0.7rem;">10 mnt lalu</span>
+                    </div>
+                    <p class="mb-1 small">Input realisasi Dana Desa Tahap 1 untuk Pembangunan Rabat Beton.</p>
+                    <span class="badge bg-light text-dark border small" style="font-size: 0.65rem;">UPDATE #TRX-2024-089</span>
+                </div>
+                <div class="list-group-item px-0 py-3 border-0 border-bottom">
+                    <div class="d-flex w-100 justify-content-between">
+                        <span class="fw-bold small text-primary">budi_admin</span>
+                        <span class="text-muted" style="font-size: 0.7rem;">2 jam lalu</span>
+                    </div>
+                    <p class="mb-1 small">Menghapus data penduduk duplikat: <strong>Ahmad Dahlan</strong>.</p>
+                    <span class="badge bg-danger bg-opacity-10 text-danger border-0 small" style="font-size: 0.65rem;">DELETE #PND-9902</span>
+                </div>
+                <div class="list-group-item px-0 py-3 border-0 border-bottom">
+                    <div class="d-flex w-100 justify-content-between">
+                        <span class="fw-bold small text-primary">eko_viewer</span>
+                        <span class="text-muted" style="font-size: 0.7rem;">5 jam lalu</span>
+                    </div>
+                    <p class="mb-1 small">Melakukan login ke sistem dari alamat IP: 192.168.1.45</p>
+                    <span class="badge bg-light text-dark border small" style="font-size: 0.65rem;">AUTH_LOGIN</span>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a href="tabel_data.html" class="btn btn-sm btn-link text-decoration-none">Lihat Semua Log Transparan <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Aksi Cepat Dashboard Privat -->
+        <div class="card p-4 bg-primary text-white border-0 shadow-sm">
+            <h6 class="fw-bold mb-3">Kelola Dasbor</h6>
+            <div class="d-grid gap-2">
+                <button class="btn btn-light btn-sm fw-bold"><i class="bi bi-cloud-upload me-2"></i> Sinkronisasi SISKEUDES</button>
+                <button class="btn btn-light btn-sm fw-bold"><i class="bi bi-file-earmark-pdf me-2"></i> Cetak Ringkasan Mingguan</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Radar Chart: Deviasi Anggaran per Bidang
+    // Deviasi = (Realisasi - Pagu) / Pagu * 100
+    const ctxRadar = document.getElementById('deviationRadarChart').getContext('2d');
+    new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+            labels: [
+                'Pemerintahan',
+                'Pembangunan',
+                'Pembinaan',
+                'Pemberdayaan',
+                'Darurat'
+            ],
+            datasets: [{
+                label: 'Deviasi Anggaran (%)',
+                data: [5, 15, -2, 25, 0], // Positif: Over budget, Negatif: Under budget
+                fill: true,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgb(255, 99, 132)',
+                pointBackgroundColor: 'rgb(255, 99, 132)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(255, 99, 132)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { display: true },
+                    suggestedMin: -30,
+                    suggestedMax: 30
                 }
-            }
-        });
-
-        // Deviation Chart
-        const ctxDeviation = document.getElementById('deviationChart').getContext('2d');
-        new Chart(ctxDeviation, {
-            type: 'bar',
-            data: {
-                labels: ['Kgt 1', 'Kgt 2', 'Kgt 3', 'Kgt 4'],
-                datasets: [{
-                    label: 'Deviasi (%)',
-                    data: [5, -12, 3, -25],
-                    backgroundColor: (ctx) => ctx.raw < 0 ? '#dc3545' : '#198754'
-                }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } }
+            plugins: {
+                legend: { position: 'bottom' }
             }
-        });
+        }
+    });
 
-        // Ranking Chart
-        const ctxRanking = document.getElementById('rankingChart').getContext('2d');
-        new Chart(ctxRanking, {
-            type: 'bar',
-            data: {
-                labels: ['Rabat Beton', 'Posyandu', 'Pertanian', 'Drainase'],
-                datasets: [{
-                    label: 'Progres (%)',
-                    data: [100, 65, 30, 15],
-                    backgroundColor: '#0d6efd'
-                }]
+    // Bar Chart: Efisiensi Realisasi (Sisa Anggaran pada proyek selesai)
+    const ctxBar = document.getElementById('efficiencyBarChart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['Rabat Beton', 'Drainase', 'Posyandu', 'Paving'],
+            datasets: [{
+                label: 'Sisa Anggaran (%)',
+                data: [8, 12, 2, 15],
+                backgroundColor: [
+                    'rgba(25, 135, 84, 0.7)',
+                    'rgba(25, 135, 84, 0.7)',
+                    'rgba(255, 193, 7, 0.7)',
+                    'rgba(25, 135, 84, 0.7)'
+                ],
+                borderColor: [
+                    'rgb(25, 135, 84)',
+                    'rgb(25, 135, 84)',
+                    'rgb(255, 193, 7)',
+                    'rgb(25, 135, 84)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 20,
+                    title: { display: true, text: 'Persentase Efisiensi (%)' }
+                }
             },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } }
+            plugins: {
+                legend: { display: false }
             }
-        });
-
-        // Service Distribution Chart
-        const ctxServiceDist = document.getElementById('serviceDistributionChart').getContext('2d');
-        new Chart(ctxServiceDist, {
-            type: 'doughnut',
-            data: {
-                labels: ['<1 Hari', '1-2 Hari', '>3 Hari'],
-                datasets: [{
-                    data: [65, 25, 10],
-                    backgroundColor: ['#198754', '#ffc107', '#dc3545']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { position: 'bottom' } }
-            }
-        });
-    </script>
-</body>
-</html>
+        }
+    });
+</script>
+{% endblock %}

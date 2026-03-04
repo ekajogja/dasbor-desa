@@ -1,0 +1,116 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Pengaturan Sistem - Dasbor Desa{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="dashboard_privat.html" class="text-decoration-none">Dashboard</a></li>
+<li class="breadcrumb-item active" aria-current="page">Pengaturan</li>
+{% endblock %}
+
+{% block content %}
+<h1 class="h3 fw-bold mb-4">Pengaturan Sistem & Profil Desa</h1>
+
+<div class="row g-4 mb-4">
+    <!-- Profil Desa (Form) -->
+    <div class="col-lg-8">
+        <div class="card p-4 border-0 shadow-sm">
+            <h5 class="fw-bold mb-4">Informasi Profil Desa</h5>
+            <form action="#">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Nama Desa</label>
+                    <input type="text" class="form-control" value="Desa Tiudan">
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Kecamatan</label>
+                        <input type="text" class="form-control" value="Gondang">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Kabupaten</label>
+                        <input type="text" class="form-control" value="Tulungagung">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Provinsi</label>
+                        <input type="text" class="form-control" value="Jawa Timur">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold text-uppercase text-muted">Kode Desa (Kemendagri)</label>
+                        <input type="text" class="form-control" value="35.01.01.2001">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Alamat Kantor Desa</label>
+                    <textarea class="form-control" rows="2">Jl. Raya Tiudan No. 1, Desa Tiudan, Kecamatan Gondang, Kabupaten Tulungagung, Jawa Timur.</textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Kontak Publik (HP/Email)</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-whatsapp"></i></span>
+                        <input type="text" class="form-control" value="0812-3456-7890">
+                    </div>
+                </div>
+                <hr class="my-4">
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary px-4 fw-bold">Simpan Profil Desa</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Foto Logo & Map -->
+    <div class="col-lg-4">
+        <div class="card p-4 border-0 shadow-sm mb-4">
+            <h6 class="fw-bold mb-3">Logo Desa</h6>
+            <div class="bg-light border rounded ratio ratio-1x1 d-flex align-items-center justify-content-center mb-3">
+                <i class="bi bi-image fs-1 text-muted"></i>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary w-100">Ganti Logo</button>
+        </div>
+        <div class="card p-4 border-0 shadow-sm">
+            <h6 class="fw-bold mb-3">Koordinat Pusat Desa (Map)</h6>
+            <div class="mb-3">
+                <label class="form-label small fw-bold">Lat, Long</label>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" value="-8.05177, 111.84063">
+                    <button class="btn btn-outline-secondary btn-sm px-2"><i class="bi bi-geo-alt"></i></button>
+                </div>
+            </div>
+            <p class="small text-muted mb-0">Digunakan sebagai titik pusat default pada dashboard publik dan peta kegiatan.</p>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4 border-0 shadow-sm mb-4">
+    <h5 class="fw-bold mb-4">Pengaturan Feature Flags & SLA</h5>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <label class="form-label small fw-bold">Target Waktu SLA Layanan (Hari)</label>
+            <input type="number" class="form-control" value="2">
+            <div class="form-text small">Standard level agreement waktu rata-rata layanan desa.</div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-check form-switch mt-4">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label fw-bold small" for="flexSwitchCheckChecked">Tampilkan Detail Anggaran Publik</label>
+                <div class="form-text small">Jika dinonaktifkan, publik hanya dapat melihat ringkasan.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+             <div class="form-check form-switch mt-4">
+                <input class="form-check-input" type="checkbox" id="pwaSwitch" checked>
+                <label class="form-check-label fw-bold small" for="pwaSwitch">Aktifkan PWA (Offline Access)</label>
+                <div class="form-text small">Mengizinkan dashboard diakses tanpa koneksi internet.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-danger mt-4 py-3 border-0 d-flex align-items-center shadow-sm">
+    <i class="bi bi-shield-lock-fill me-3 fs-3"></i>
+    <div>
+        <strong>Zona Berbahaya:</strong> Manajemen teknis sistem seperti Database, Audit Log, dan Manajemen User berada di bawah menu <strong>Administrasi</strong>. Gunakan dengan hati-hati.
+    </div>
+</div>
+{% endblock %}

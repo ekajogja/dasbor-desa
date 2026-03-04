@@ -21,12 +21,12 @@ Dokumen ini menjelaskan arsitektur teknis sistem Dasbor Desa dengan fokus pada i
 
 ```mermaid
 graph TD
-    "SISKEUDES (Keuangan)" --> "Laporan Excel Realisasi"
-    "Laporan Excel Realisasi" --> "DASBOR DESA (Agregasi & Visualisasi)"
-    "Prodeskel (Kependudukan)" --> "DASBOR DESA (Agregasi & Visualisasi)"
-    "SIMDABUMAS (Layanan)" --> "DASBOR DESA (Agregasi & Visualisasi)"
-    "DASBOR DESA (Agregasi & Visualisasi)" --> "Dashboard Publik"
-    "DASBOR DESA (Agregasi & Visualisasi)" --> "Laporan Triwulan"
+    ["SISKEUDES (Keuangan)"] --> ["Laporan Excel Realisasi"]
+    ["Laporan Excel Realisasi"] --> ["DASBOR DESA (Agregasi & Visualisasi)"]
+    ["Prodeskel (Kependudukan)"] --> ["DASBOR DESA (Agregasi & Visualisasi)"]
+    ["SIMDABUMAS (Layanan)"] --> ["DASBOR DESA (Agregasi & Visualisasi)"]
+    ["DASBOR DESA (Agregasi & Visualisasi)"] --> ["Dashboard Publik"]
+    ["DASBOR DESA (Agregasi & Visualisasi)"] --> ["Laporan Triwulan"]
 ```
 
 **Prinsip**: Dasbor Desa adalah layer visualisasi dan analitik, bukan sistem sumber data primer.
